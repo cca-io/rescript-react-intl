@@ -1,0 +1,12 @@
+[
+  {
+    "id": "page.hello",
+    "defaultMessage": "Hello",
+    "message": ""
+  },
+  {
+    "id": "page.world",
+    "defaultMessage": "World",
+    "message": ""
+  }
+]

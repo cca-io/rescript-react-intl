@@ -1,0 +1,12 @@
+[
+  {
+    "id": "page.hello",
+    "defaultMessage": "Hello",
+    "message": "Привет"
+  },
+  {
+    "id": "page.world",
+    "defaultMessage": "World",
+    "message": "Мир"
+  }
+]

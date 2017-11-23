@@ -1,0 +1,22 @@
+{
+  "name": "bs-react-intl",
+  "sources": [
+    "src",
+    {
+      "dir": "examples",
+      "type" : "dev",
+      "subdirs": true,
+    },
+  ],
+  "bs-dependencies": ["reason-react"],
+  "reason": {
+    "react-jsx": 2,
+  },
+  "refmt": 3,
+  "bsc-flags": ["-bs-super-errors"],
+  "package-specs": {
+    "module": "commonjs",
+    "in-source": true,
+  },
+  "suffix": ".bs.js",
+}

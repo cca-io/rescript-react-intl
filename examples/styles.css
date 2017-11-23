@@ -1,0 +1,50 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Menlo, Consolas, monospace;
+  font-size: 16px;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
+button {
+  display: inline-flex;
+  margin: 20px 10px;
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: #333;
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+button:focus {
+  outline: none;
+  border: 1px solid #29d;
+}
+
+button.active {
+  border: 1px solid #29d;
+  background-color: #29d;
+  color: #fff;
+}
+
+.container {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+}

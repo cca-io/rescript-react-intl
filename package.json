@@ -1,0 +1,35 @@
+{
+  "name": "bs-react-intl",
+  "version": "0.0.1",
+  "description": "BuckleScript bindings to react-intl",
+  "author": "Alex Fedoseev <alex.fedoseev@gmail.com>",
+  "license": "MIT",
+  "main": "src/ReactIntl.bs.js",
+  "scripts": {
+    "start": "bsb -clean-world -make-world -w",
+    "build": "bsb -clean-world -make-world && webpack",
+    "clean": "bsb -clean-world",
+    "test": "exit 0"
+  },
+  "peerDependencies": {
+    "react-intl": "^2.4.0",
+    "reason-react": "^0.3.0"
+  },
+  "devDependencies": {
+    "bs-platform": "2.0.0",
+    "prop-types": "15.6.0",
+    "react": "16.1.1",
+    "react-dom": "16.1.1",
+    "react-intl": "2.4.0",
+    "reason-react": "0.3.0",
+    "webpack": "3.8.1"
+  },
+  "keywords": [
+    "react",
+    "react-intl",
+    "reason",
+    "reasonml",
+    "ocaml",
+    "bucklescript"
+  ]
+}
