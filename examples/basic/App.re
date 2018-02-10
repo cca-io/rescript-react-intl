@@ -15,7 +15,14 @@ let make = (_) => {
   render: ({state, reduce}) =>
     <ReactIntl.IntlProvider
       locale=(state.locale |> Locale.mapLocaleToString)
-      messages=(state.locale |> Locale.mapLocaleToMessages |> ReactIntl.messagesArrayToDict)>
-      <Page locale=state.locale setLocale=(reduce((locale) => SetLocale(locale))) />
+      messages=(
+        state.locale
+        |> Locale.mapLocaleToMessages
+        |> ReactIntl.messagesArrayToDict
+      )>
+      <Page
+        locale=state.locale
+        setLocale=(reduce(locale => SetLocale(locale)))
+      />
     </ReactIntl.IntlProvider>
 };

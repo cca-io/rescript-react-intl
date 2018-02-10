@@ -8,5 +8,10 @@
     "id": "page.world",
     "defaultMessage": "World",
     "message": "Мир"
+  },
+  {
+    "id": "page.today",
+    "defaultMessage": "Today is",
+    "message": "Сегодня"
   }
 ]

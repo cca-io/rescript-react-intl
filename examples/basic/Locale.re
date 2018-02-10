@@ -6,13 +6,13 @@ type locale =
   | En
   | Ru;
 
-let mapLocaleToString = (locale) =>
+let mapLocaleToString = locale =>
   switch locale {
   | En => "en"
   | Ru => "ru"
   };
 
-let mapLocaleToMessages = (locale) =>
+let mapLocaleToMessages = locale =>
   switch locale {
   | En => en
   | Ru => ru
