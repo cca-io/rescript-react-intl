@@ -2,11 +2,17 @@
 type message = {
   .
   "id": string,
-  "message": Js.nullable(string),
   "defaultMessage": string
 };
 
-type messages = array(message);
+type jsonMessage = {
+  .
+  "id": string,
+  "defaultMessage": string,
+  "message": Js.nullable(string)
+};
+
+type jsonMessages = array(jsonMessage);
 
 /* addLocaleData */
 type localeData('t) = {.. "locale": string} as 't;
@@ -577,15 +583,9 @@ module IntlInjector = {
 module FormattedMessage = {
   [@bs.module "react-intl"]
   external reactClass : ReasonReact.reactClass = "FormattedMessage";
-  type message('t) =
-    {
-      .
-      "id": string,
-      "defaultMessage": string
-    } as 't;
   let make =
       (
-        ~message: message('t),
+        ~message: message,
         ~values: option(Js.t({..}))=?,
         ~tagName: option(domTag)=?,
         _
@@ -611,7 +611,7 @@ let wrapOptUnicodeString = (input: Js.nullable(string)) =>
   | None => ""
   };
 
-let messagesArrayToDict = (translation: array(message)) =>
+let messagesArrayToDict = (translation: jsonMessages) =>
   translation
   |> Array.fold_left(
        (dict, message) => {

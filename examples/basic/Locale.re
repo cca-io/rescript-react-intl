@@ -1,6 +1,6 @@
-[@bs.module] external en : ReactIntl.messages = "./translations/en.json";
+[@bs.module] external en : ReactIntl.jsonMessages = "./translations/en.json";
 
-[@bs.module] external ru : ReactIntl.messages = "./translations/ru.json";
+[@bs.module] external ru : ReactIntl.jsonMessages = "./translations/ru.json";
 
 type locale =
   | En
