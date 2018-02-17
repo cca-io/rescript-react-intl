@@ -3,7 +3,7 @@ type state = {locale: Locale.locale};
 type action =
   | SetLocale(Locale.locale);
 
-let component = ReasonReact.reducerComponent("App");
+let component = "App" |> ReasonReact.reducerComponent;
 
 let make = (_) => {
   ...component,
@@ -12,7 +12,7 @@ let make = (_) => {
     switch action {
     | SetLocale(locale) => ReasonReact.Update({locale: locale})
     },
-  render: ({state, reduce}) =>
+  render: ({state, send}) =>
     <ReactIntl.IntlProvider
       locale=(state.locale |> Locale.mapLocaleToString)
       messages=(
@@ -22,7 +22,7 @@ let make = (_) => {
       )>
       <Page
         locale=state.locale
-        setLocale=(reduce(locale => SetLocale(locale)))
+        setLocale=(locale => SetLocale(locale) |> send)
       />
     </ReactIntl.IntlProvider>
 };

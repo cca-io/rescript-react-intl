@@ -1,11 +1,11 @@
 open PageLocale;
 
-let component = ReasonReact.statelessComponent("Page");
+let component = "Page" |> ReasonReact.statelessComponent;
 
 let make = (~locale, ~setLocale, _) => {
   let getClassName = locale' => locale' === locale ? "active" : "";
-  let setEnLocale = (_) => setLocale(Locale.En);
-  let setRuLocale = (_) => setLocale(Locale.Ru);
+  let setEnLocale = (_) => Locale.En |> setLocale;
+  let setRuLocale = (_) => Locale.Ru |> setLocale;
   let localeToElement = locale =>
     locale |> Locale.mapLocaleToString |> ReasonReact.stringToElement;
   {
@@ -13,16 +13,16 @@ let make = (~locale, ~setLocale, _) => {
     render: (_) =>
       <div className="container">
         <div className="buttons">
-          <button className=(getClassName(Locale.En)) onClick=setEnLocale>
+          <button className=(Locale.En |> getClassName) onClick=setEnLocale>
             (Locale.En |> localeToElement)
           </button>
-          <button className=(getClassName(Locale.Ru)) onClick=setRuLocale>
+          <button className=(Locale.Ru |> getClassName) onClick=setRuLocale>
             (Locale.Ru |> localeToElement)
           </button>
         </div>
         <div className="message">
           <ReactIntl.FormattedMessage message=pageLocale##hello />
-          (ReasonReact.stringToElement(" "))
+          (" " |> ReasonReact.stringToElement)
           <ReactIntl.FormattedMessage message=pageLocale##world />
         </div>
         <ReactIntl.IntlInjector>
@@ -30,9 +30,11 @@ let make = (~locale, ~setLocale, _) => {
                intl =>
                  <div>
                    <ReactIntl.FormattedMessage message=pageLocale##today />
-                   (ReasonReact.stringToElement(" "))
+                   (" " |> ReasonReact.stringToElement)
                    (
-                     intl.formatDate(Js.Date.now() |> Js.Date.fromFloat)
+                     Js.Date.now()
+                     |> Js.Date.fromFloat
+                     |> intl.formatDate
                      |> ReasonReact.stringToElement
                    )
                  </div>
