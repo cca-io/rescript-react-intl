@@ -493,21 +493,21 @@ type intl('t) = {
   defaultLocale: string,
   defaultFormats: Js.t({..} as 't), /* TODO */
   formatDate: Js.Date.t => string,
-  formatDateWithOptions: (Js.Date.t, dateTimeFormatOptionsRe) => string,
+  formatDateWithOptions: (dateTimeFormatOptionsRe, Js.Date.t) => string,
   formatTime: Js.Date.t => string,
-  formatTimeWithOptions: (Js.Date.t, dateTimeFormatOptionsRe) => string,
+  formatTimeWithOptions: (dateTimeFormatOptionsRe, Js.Date.t) => string,
   formatRelative: Js.Date.t => string,
-  formatRelativeWithOptions: (Js.Date.t, relativeFormatOptionsRe) => string,
+  formatRelativeWithOptions: (relativeFormatOptionsRe, Js.Date.t) => string,
   formatInt: int => string,
-  formatIntWithOptions: (int, numberFormatOptionsRe) => string,
+  formatIntWithOptions: (numberFormatOptionsRe, int) => string,
   formatFloat: float => string,
-  formatFloatWithOptions: (float, numberFormatOptionsRe) => string,
+  formatFloatWithOptions: (numberFormatOptionsRe, float) => string,
   formatPlural: int => string,
-  formatPluralWithOptions: (int, pluralFormatOptionsRe) => string,
+  formatPluralWithOptions: (pluralFormatOptionsRe, int) => string,
   formatMessage: message => string,
-  formatMessageWithValues: (message, Js.t({..} as 't)) => string,
+  formatMessageWithValues: (Js.t({..} as 't), message) => string,
   formatHTMLMessage: message => string,
-  formatHTMLMessageWithValues: (message, Js.t({..} as 't)) => string,
+  formatHTMLMessageWithValues: (Js.t({..} as 't), message) => string,
   now: unit => int
 };
 
@@ -518,14 +518,14 @@ let mapIntlJsToReason = (intlJs: intlJs('t)) : intl('a) => {
   defaultLocale: intlJs##defaultLocale,
   defaultFormats: intlJs##defaultFormats,
   formatDate: value => intlJs##formatDate(value, Js.Nullable.from_opt(None)),
-  formatDateWithOptions: (value, options) =>
+  formatDateWithOptions: (options, value) =>
     intlJs##formatDate(
       value,
       Some(options |> mapReasonDateTimeFormatOptionsToJs)
       |> Js.Nullable.from_opt
     ),
   formatTime: value => intlJs##formatTime(value, Js.Nullable.from_opt(None)),
-  formatTimeWithOptions: (value, options) =>
+  formatTimeWithOptions: (options, value) =>
     intlJs##formatTime(
       value,
       Some(options |> mapReasonDateTimeFormatOptionsToJs)
@@ -533,7 +533,7 @@ let mapIntlJsToReason = (intlJs: intlJs('t)) : intl('a) => {
     ),
   formatRelative: value =>
     intlJs##formatRelative(value, Js.Nullable.from_opt(None)),
-  formatRelativeWithOptions: (value, options) =>
+  formatRelativeWithOptions: (options, value) =>
     intlJs##formatRelative(
       value,
       Some(options |> mapReasonRelativeFormatOptionsToJs)
@@ -541,31 +541,31 @@ let mapIntlJsToReason = (intlJs: intlJs('t)) : intl('a) => {
     ),
   formatInt: value =>
     intlJs##formatNumber(value |> float_of_int, Js.Nullable.from_opt(None)),
-  formatIntWithOptions: (value, options) =>
+  formatIntWithOptions: (options, value) =>
     intlJs##formatNumber(
       value |> float_of_int,
       Some(options |> mapReasonNumberFormatOptionsToJs) |> Js.Nullable.from_opt
     ),
   formatFloat: value => intlJs##formatNumber(value, Js.Nullable.from_opt(None)),
-  formatFloatWithOptions: (value, options) =>
+  formatFloatWithOptions: (options, value) =>
     intlJs##formatNumber(
       value,
       Some(options |> mapReasonNumberFormatOptionsToJs) |> Js.Nullable.from_opt
     ),
   formatPlural: value =>
     intlJs##formatPlural(value, Js.Nullable.from_opt(None)),
-  formatPluralWithOptions: (value, options) =>
+  formatPluralWithOptions: (options, value) =>
     intlJs##formatPlural(
       value,
       Some(options |> mapReasonPluralFormatOptionsToJs) |> Js.Nullable.from_opt
     ),
   formatMessage: message =>
     intlJs##formatMessage(message, Js.Nullable.from_opt(None)),
-  formatMessageWithValues: (message, values) =>
+  formatMessageWithValues: (values, message) =>
     intlJs##formatMessage(message, Js.Nullable.from_opt(Some(values))),
   formatHTMLMessage: message =>
     intlJs##formatHTMLMessage(message, Js.Nullable.from_opt(None)),
-  formatHTMLMessageWithValues: (message, values) =>
+  formatHTMLMessageWithValues: (values, message) =>
     intlJs##formatHTMLMessage(message, Js.Nullable.from_opt(Some(values))),
   now: () => intlJs##now()
 };
