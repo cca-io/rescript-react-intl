@@ -4,8 +4,10 @@ BuckleScript bindings to [react-intl](https://github.com/yahoo/react-intl).
 
 ## Installation
 ```shell
-# yarn / npm
+# yarn
 yarn add bs-react-intl
+
+# or npm
 npm install --save bs-react-intl
 ```
 
