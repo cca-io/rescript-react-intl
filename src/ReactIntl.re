@@ -28,7 +28,7 @@ external defineMessages : defineMessages(Js.t({..})) = "";
 /* Formatters */
 let mapOptBoolToJs = maybeBool =>
   Js.Option.map([@bs] (bool => bool |> Js.Boolean.to_js_boolean), maybeBool)
-  |> Js.Nullable.from_opt;
+  |> Js.Nullable.fromOption;
 
 type localeMatcher =
   | BestFitLocaleMatcher
@@ -46,7 +46,7 @@ let mapReasonLocaleMatcherToJs = localeMatcher =>
     ),
     localeMatcher
   )
-  |> Js.Nullable.from_opt;
+  |> Js.Nullable.fromOption;
 
 type formatMatcher =
   | BestFitFormatMatcher
@@ -64,7 +64,7 @@ let mapReasonFormatMatcherToJs = formatMatcher =>
     ),
     formatMatcher
   )
-  |> Js.Nullable.from_opt;
+  |> Js.Nullable.fromOption;
 
 type numeralFormat =
   | NumericNumeralFormat
@@ -82,7 +82,7 @@ let mapReasonNumeralFormatToJs = numeralFormat =>
     ),
     numeralFormat
   )
-  |> Js.Nullable.from_opt;
+  |> Js.Nullable.fromOption;
 
 type textualFormat =
   | NarrowTextualFormat
@@ -102,7 +102,7 @@ let mapReasonTextualFormatToJs = textualFormat =>
     ),
     textualFormat
   )
-  |> Js.Nullable.from_opt;
+  |> Js.Nullable.fromOption;
 
 type mixedFormat =
   | NumericMixedFormat
@@ -126,7 +126,7 @@ let mapReasonMixedFormatToJs = mixedFormat =>
     ),
     mixedFormat
   )
-  |> Js.Nullable.from_opt;
+  |> Js.Nullable.fromOption;
 
 type timeZoneName =
   | ShortTimeZoneName
@@ -144,7 +144,7 @@ let mapReasonTimeZoneNameToJs = timeZoneName =>
     ),
     timeZoneName
   )
-  |> Js.Nullable.from_opt;
+  |> Js.Nullable.fromOption;
 
 type dateTimeFormatOptionsRe = {
   .
@@ -187,7 +187,7 @@ let mapReasonDateTimeFormatOptionsToJs =
     : dateTimeFormatOptionsJs => {
   "localeMatcher": options##localeMatcher |> mapReasonLocaleMatcherToJs,
   "formatMatcher": options##formatMatcher |> mapReasonFormatMatcherToJs,
-  "timeZone": options##timeZone |> Js.Nullable.from_opt,
+  "timeZone": options##timeZone |> Js.Nullable.fromOption,
   "hour12": options##hour12 |> mapOptBoolToJs,
   "weekday": options##weekday |> mapReasonTextualFormatToJs,
   "era": options##era |> mapReasonTextualFormatToJs,
@@ -198,7 +198,7 @@ let mapReasonDateTimeFormatOptionsToJs =
   "minute": options##minute |> mapReasonNumeralFormatToJs,
   "second": options##second |> mapReasonNumeralFormatToJs,
   "timeZoneName": options##timeZoneName |> mapReasonTimeZoneNameToJs,
-  "format": options##format |> Js.Nullable.from_opt
+  "format": options##format |> Js.Nullable.fromOption
 };
 
 type relativeStyle =
@@ -217,7 +217,7 @@ let mapReasonRelativeStyleToJs = relativeStyle =>
     ),
     relativeStyle
   )
-  |> Js.Nullable.from_opt;
+  |> Js.Nullable.fromOption;
 
 type units =
   | Second
@@ -243,7 +243,7 @@ let mapReasonUnitsToJs = units =>
     ),
     units
   )
-  |> Js.Nullable.from_opt;
+  |> Js.Nullable.fromOption;
 
 type relativeFormatOptionsRe = {
   .
@@ -266,8 +266,8 @@ let mapReasonRelativeFormatOptionsToJs =
     : relativeFormatOptionsJs => {
   "style": options##style |> mapReasonRelativeStyleToJs,
   "units": options##units |> mapReasonUnitsToJs,
-  "format": options##format |> Js.Nullable.from_opt,
-  "now": options##now |> Js.Nullable.from_opt
+  "format": options##format |> Js.Nullable.fromOption,
+  "now": options##now |> Js.Nullable.fromOption
 };
 
 type numberStyle =
@@ -288,7 +288,7 @@ let mapReasonNumberStyleToJs = numberStyle =>
     ),
     numberStyle
   )
-  |> Js.Nullable.from_opt;
+  |> Js.Nullable.fromOption;
 
 type currencyDisplay =
   | SymbolCurrencyDisplay
@@ -308,7 +308,7 @@ let mapReasonCurrencyDisplayToJs = currencyDisplay =>
     ),
     currencyDisplay
   )
-  |> Js.Nullable.from_opt;
+  |> Js.Nullable.fromOption;
 
 type numberFormatOptionsRe = {
   .
@@ -341,18 +341,19 @@ type numberFormatOptionsJs = {
 let mapReasonNumberFormatOptionsToJs = options => {
   "localeMatcher": options##localeMatcher |> mapReasonLocaleMatcherToJs,
   "style": options##style |> mapReasonNumberStyleToJs,
-  "currency": options##currency |> Js.Nullable.from_opt,
+  "currency": options##currency |> Js.Nullable.fromOption,
   "currencyDisplay": options##currencyDisplay |> mapReasonCurrencyDisplayToJs,
   "useGrouping": options##useGrouping |> mapOptBoolToJs,
-  "minimumIntegerDigits": options##minimumIntegerDigits |> Js.Nullable.from_opt,
+  "minimumIntegerDigits":
+    options##minimumIntegerDigits |> Js.Nullable.fromOption,
   "minimumFractionDigits":
-    options##minimumFractionDigits |> Js.Nullable.from_opt,
+    options##minimumFractionDigits |> Js.Nullable.fromOption,
   "maximumFractionDigits":
-    options##maximumFractionDigits |> Js.Nullable.from_opt,
+    options##maximumFractionDigits |> Js.Nullable.fromOption,
   "minimumSignificantDigits":
-    options##minimumSignificantDigits |> Js.Nullable.from_opt,
+    options##minimumSignificantDigits |> Js.Nullable.fromOption,
   "maximumSignificantDigits":
-    options##maximumSignificantDigits |> Js.Nullable.from_opt
+    options##maximumSignificantDigits |> Js.Nullable.fromOption
 };
 
 type pluralStyle =
@@ -371,7 +372,7 @@ let mapReasonPluralStyleToJs = pluralStyle =>
     ),
     pluralStyle
   )
-  |> Js.Nullable.from_opt;
+  |> Js.Nullable.fromOption;
 
 type pluralFormatOptionsRe = {. "style": option(pluralStyle)};
 
@@ -449,14 +450,14 @@ module IntlProvider = {
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props={
-        "locale": locale |> Js.Nullable.from_opt,
-        "formats": formats |> Js.Nullable.from_opt,
-        "messages": messages |> Js.Nullable.from_opt,
-        "defaultLocale": defaultLocale |> Js.Nullable.from_opt,
-        "defaultFormats": defaultFormats |> Js.Nullable.from_opt,
+        "locale": locale |> Js.Nullable.fromOption,
+        "formats": formats |> Js.Nullable.fromOption,
+        "messages": messages |> Js.Nullable.fromOption,
+        "defaultLocale": defaultLocale |> Js.Nullable.fromOption,
+        "defaultFormats": defaultFormats |> Js.Nullable.fromOption,
         "textComponent":
-          textComponent |> mapOptDomTagToString |> Js.Nullable.from_opt,
-        "initialNow": initialNow |> Js.Nullable.from_opt
+          textComponent |> mapOptDomTagToString |> Js.Nullable.fromOption,
+        "initialNow": initialNow |> Js.Nullable.fromOption
       },
       children
     );
@@ -517,56 +518,62 @@ let mapIntlJsToReason = (intlJs: intlJs('t)) : intl('a) => {
   messages: intlJs##messages,
   defaultLocale: intlJs##defaultLocale,
   defaultFormats: intlJs##defaultFormats,
-  formatDate: value => intlJs##formatDate(value, Js.Nullable.from_opt(None)),
+  formatDate: value =>
+    intlJs##formatDate(value, None |> Js.Nullable.fromOption),
   formatDateWithOptions: (options, value) =>
     intlJs##formatDate(
       value,
       Some(options |> mapReasonDateTimeFormatOptionsToJs)
-      |> Js.Nullable.from_opt
+      |> Js.Nullable.fromOption
     ),
-  formatTime: value => intlJs##formatTime(value, Js.Nullable.from_opt(None)),
+  formatTime: value =>
+    intlJs##formatTime(value, None |> Js.Nullable.fromOption),
   formatTimeWithOptions: (options, value) =>
     intlJs##formatTime(
       value,
       Some(options |> mapReasonDateTimeFormatOptionsToJs)
-      |> Js.Nullable.from_opt
+      |> Js.Nullable.fromOption
     ),
   formatRelative: value =>
-    intlJs##formatRelative(value, Js.Nullable.from_opt(None)),
+    intlJs##formatRelative(value, None |> Js.Nullable.fromOption),
   formatRelativeWithOptions: (options, value) =>
     intlJs##formatRelative(
       value,
       Some(options |> mapReasonRelativeFormatOptionsToJs)
-      |> Js.Nullable.from_opt
+      |> Js.Nullable.fromOption
     ),
   formatInt: value =>
-    intlJs##formatNumber(value |> float_of_int, Js.Nullable.from_opt(None)),
+    intlJs##formatNumber(value |> float_of_int, None |> Js.Nullable.fromOption),
   formatIntWithOptions: (options, value) =>
     intlJs##formatNumber(
       value |> float_of_int,
-      Some(options |> mapReasonNumberFormatOptionsToJs) |> Js.Nullable.from_opt
+      Some(options |> mapReasonNumberFormatOptionsToJs)
+      |> Js.Nullable.fromOption
     ),
-  formatFloat: value => intlJs##formatNumber(value, Js.Nullable.from_opt(None)),
+  formatFloat: value =>
+    intlJs##formatNumber(value, None |> Js.Nullable.fromOption),
   formatFloatWithOptions: (options, value) =>
     intlJs##formatNumber(
       value,
-      Some(options |> mapReasonNumberFormatOptionsToJs) |> Js.Nullable.from_opt
+      Some(options |> mapReasonNumberFormatOptionsToJs)
+      |> Js.Nullable.fromOption
     ),
   formatPlural: value =>
-    intlJs##formatPlural(value, Js.Nullable.from_opt(None)),
+    intlJs##formatPlural(value, None |> Js.Nullable.fromOption),
   formatPluralWithOptions: (options, value) =>
     intlJs##formatPlural(
       value,
-      Some(options |> mapReasonPluralFormatOptionsToJs) |> Js.Nullable.from_opt
+      Some(options |> mapReasonPluralFormatOptionsToJs)
+      |> Js.Nullable.fromOption
     ),
   formatMessage: message =>
-    intlJs##formatMessage(message, Js.Nullable.from_opt(None)),
+    intlJs##formatMessage(message, None |> Js.Nullable.fromOption),
   formatMessageWithValues: (values, message) =>
-    intlJs##formatMessage(message, Js.Nullable.from_opt(Some(values))),
+    intlJs##formatMessage(message, Some(values) |> Js.Nullable.fromOption),
   formatHTMLMessage: message =>
-    intlJs##formatHTMLMessage(message, Js.Nullable.from_opt(None)),
+    intlJs##formatHTMLMessage(message, None |> Js.Nullable.fromOption),
   formatHTMLMessageWithValues: (values, message) =>
-    intlJs##formatHTMLMessage(message, Js.Nullable.from_opt(Some(values))),
+    intlJs##formatHTMLMessage(message, Some(values) |> Js.Nullable.fromOption),
   now: () => intlJs##now()
 };
 
@@ -595,8 +602,8 @@ module FormattedMessage = {
       ~props={
         "id": message##id,
         "defaultMessage": message##defaultMessage,
-        "values": values |> Js.Nullable.from_opt,
-        "tagName": tagName |> mapOptDomTagToString |> Js.Nullable.from_opt
+        "values": values |> Js.Nullable.fromOption,
+        "tagName": tagName |> mapOptDomTagToString |> Js.Nullable.fromOption
       },
       [||]
     );
@@ -606,7 +613,7 @@ module FormattedMessage = {
 let wrapUnicodeString = (input: string) => {j|$input|j};
 
 let wrapOptUnicodeString = (input: Js.nullable(string)) =>
-  switch (Js.Nullable.to_opt(input)) {
+  switch (input |> Js.Nullable.toOption) {
   | Some(input) => input |> wrapUnicodeString
   | None => ""
   };
