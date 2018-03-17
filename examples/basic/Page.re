@@ -21,15 +21,15 @@ let make = (~locale, ~setLocale, _) => {
           </button>
         </div>
         <div className="message">
-          <ReactIntl.FormattedMessage message=pageLocale##hello />
+          <ReactIntl.DefinedMessage message=pageLocale##hello />
           (" " |> ReasonReact.stringToElement)
-          <ReactIntl.FormattedMessage message=pageLocale##world />
+          <ReactIntl.DefinedMessage message=pageLocale##world />
         </div>
         <ReactIntl.IntlInjector>
           ...(
                intl =>
                  <div>
-                   <ReactIntl.FormattedMessage message=pageLocale##today />
+                   <ReactIntl.DefinedMessage message=pageLocale##today />
                    (" " |> ReasonReact.stringToElement)
                    (
                      Js.Date.now()
@@ -40,6 +40,6 @@ let make = (~locale, ~setLocale, _) => {
                  </div>
              )
         </ReactIntl.IntlInjector>
-      </div>
+      </div>,
   };
 };

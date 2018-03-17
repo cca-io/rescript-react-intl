@@ -573,6 +573,31 @@ module FormattedMessage = {
   external reactClass : ReasonReact.reactClass = "FormattedMessage";
   let make =
       (
+        ~id: string,
+        ~defaultMessage: string,
+        ~values: option(Js.t({..}))=?,
+        ~tagName: option(domTag)=?,
+        _,
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "id": id,
+        "defaultMessage": defaultMessage,
+        "values": values |> Js.Nullable.fromOption,
+        "tagName": tagName |> mapOptDomTagToString |> Js.Nullable.fromOption,
+      },
+      [||],
+    );
+};
+
+/* DefinedMessage is another wrapper for FormattedMessage.
+   It takes the id and defaultMessage props from a passed message object. */
+module DefinedMessage = {
+  [@bs.module "react-intl"]
+  external reactClass : ReasonReact.reactClass = "FormattedMessage";
+  let make =
+      (
         ~message: message,
         ~values: option(Js.t({..}))=?,
         ~tagName: option(domTag)=?,
