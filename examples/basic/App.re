@@ -9,7 +9,7 @@ let make = (_) => {
   ...component,
   initialState: () => {locale: Locale.En},
   reducer: (action, _) =>
-    switch action {
+    switch (action) {
     | SetLocale(locale) => ReasonReact.Update({locale: locale})
     },
   render: ({state, send}) =>
@@ -24,5 +24,5 @@ let make = (_) => {
         locale=state.locale
         setLocale=(locale => SetLocale(locale) |> send)
       />
-    </ReactIntl.IntlProvider>
+    </ReactIntl.IntlProvider>,
 };

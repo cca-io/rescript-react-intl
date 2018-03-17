@@ -1,16 +1,15 @@
 let pageLocale =
-  [@bs]
-  ReactIntl.defineMessages({
+  ReactIntl.defineMessages(. {
     "hello": {
       "id": "page.hello",
-      "defaultMessage": "Hello"
+      "defaultMessage": "Hello",
     },
     "world": {
       "id": "page.world",
-      "defaultMessage": "World"
+      "defaultMessage": "World",
     },
     "today": {
       "id": "page.today",
-      "defaultMessage": "Today is"
-    }
+      "defaultMessage": "Today is",
+    },
   });
