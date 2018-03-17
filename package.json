@@ -6,7 +6,7 @@
   "license": "MIT",
   "main": "src/ReactIntl.bs.js",
   "scripts": {
-    "start": "bsb -clean-world -make-world -w",
+    "start": "bsb -clean-world -make-world && webpack --watch",
     "build": "bsb -clean-world -make-world && webpack",
     "clean": "bsb -clean-world",
     "preversion": "yarn run clean",
