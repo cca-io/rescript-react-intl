@@ -10,8 +10,8 @@
     "build": "bsb -clean-world -make-world && webpack",
     "clean": "bsb -clean-world",
     "refmt": "find . -name '*.re' -exec refmt --in-place {} \\;",
-    "preversion": "yarn run clean",
-    "test": "exit 0"
+    "test": "exit 0",
+    "preversion": "yarn run clean && yarn run refmt"
   },
   "peerDependencies": {
     "bs-platform": "^2.2.2",
