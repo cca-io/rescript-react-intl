@@ -41,6 +41,8 @@ Despite lots of unchecked the most hard work is done. I'll add bindings to the r
 - [ ] FormattedPlural (children-as-function)
 - [x] FormattedMessage
 - [ ] FormattedMessage (children-as-function)
+- [x] DefinedMessage
+- [ ] DefinedMessage (children-as-function)
 - [ ] FormattedHTMLMessage
 - [ ] FormattedHTMLMessage (children-as-function)
 
