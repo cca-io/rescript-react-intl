@@ -2,14 +2,14 @@
 type message = {
   .
   "id": string,
-  "defaultMessage": string
+  "defaultMessage": string,
 };
 
 type jsonMessage = {
   .
   "id": string,
   "defaultMessage": string,
-  "message": Js.nullable(string)
+  "message": Js.nullable(string),
 };
 
 type jsonMessages = array(jsonMessage);
@@ -17,17 +17,18 @@ type jsonMessages = array(jsonMessage);
 /* addLocaleData */
 type localeData('t) = {.. "locale": string} as 't;
 
-[@bs.module "react-intl"] external addLocaleData : localeData('t) => unit = "";
+[@bs.module "react-intl"]
+external addLocaleData : localeData('t) => unit = "";
 
 /* defineMessages */
-type defineMessages('m) = [@bs] ('m => 'm);
+type defineMessages('m) = (. 'm) => 'm;
 
 [@bs.module "react-intl"]
 external defineMessages : defineMessages(Js.t({..})) = "";
 
 /* Formatters */
 let mapOptBoolToJs = maybeBool =>
-  Js.Option.map([@bs] (bool => bool |> Js.Boolean.to_js_boolean), maybeBool)
+  Js.Option.map((. bool) => bool |> Js.Boolean.to_js_boolean, maybeBool)
   |> Js.Nullable.fromOption;
 
 type localeMatcher =
@@ -36,15 +37,12 @@ type localeMatcher =
 
 let mapReasonLocaleMatcherToJs = localeMatcher =>
   Js.Option.map(
-    [@bs]
-    (
-      localeMatcher =>
-        switch localeMatcher {
-        | BestFitLocaleMatcher => "best fit"
-        | LookupLocaleMatcher => "lookup"
-        }
-    ),
-    localeMatcher
+    (. localeMatcher) =>
+      switch (localeMatcher) {
+      | BestFitLocaleMatcher => "best fit"
+      | LookupLocaleMatcher => "lookup"
+      },
+    localeMatcher,
   )
   |> Js.Nullable.fromOption;
 
@@ -54,15 +52,12 @@ type formatMatcher =
 
 let mapReasonFormatMatcherToJs = formatMatcher =>
   Js.Option.map(
-    [@bs]
-    (
-      formatMatcher =>
-        switch formatMatcher {
-        | BestFitFormatMatcher => "best fit"
-        | BasicFormatMatcher => "basic"
-        }
-    ),
-    formatMatcher
+    (. formatMatcher) =>
+      switch (formatMatcher) {
+      | BestFitFormatMatcher => "best fit"
+      | BasicFormatMatcher => "basic"
+      },
+    formatMatcher,
   )
   |> Js.Nullable.fromOption;
 
@@ -72,15 +67,12 @@ type numeralFormat =
 
 let mapReasonNumeralFormatToJs = numeralFormat =>
   Js.Option.map(
-    [@bs]
-    (
-      numeralFormat =>
-        switch numeralFormat {
-        | NumericNumeralFormat => "numeric"
-        | TwoDigitNumeralFormat => "2-digit"
-        }
-    ),
-    numeralFormat
+    (. numeralFormat) =>
+      switch (numeralFormat) {
+      | NumericNumeralFormat => "numeric"
+      | TwoDigitNumeralFormat => "2-digit"
+      },
+    numeralFormat,
   )
   |> Js.Nullable.fromOption;
 
@@ -91,16 +83,13 @@ type textualFormat =
 
 let mapReasonTextualFormatToJs = textualFormat =>
   Js.Option.map(
-    [@bs]
-    (
-      textualFormat =>
-        switch textualFormat {
-        | NarrowTextualFormat => "narrow"
-        | ShortTextualFormat => "short"
-        | LongTextualFormat => "long"
-        }
-    ),
-    textualFormat
+    (. textualFormat) =>
+      switch (textualFormat) {
+      | NarrowTextualFormat => "narrow"
+      | ShortTextualFormat => "short"
+      | LongTextualFormat => "long"
+      },
+    textualFormat,
   )
   |> Js.Nullable.fromOption;
 
@@ -113,18 +102,15 @@ type mixedFormat =
 
 let mapReasonMixedFormatToJs = mixedFormat =>
   Js.Option.map(
-    [@bs]
-    (
-      mixedFormat =>
-        switch mixedFormat {
-        | NarrowMixedFormat => "narrow"
-        | ShortMixedFormat => "short"
-        | LongMixedFormat => "long"
-        | NumericMixedFormat => "numeric"
-        | TwoDigitMixedFormat => "2-digit"
-        }
-    ),
-    mixedFormat
+    (. mixedFormat) =>
+      switch (mixedFormat) {
+      | NarrowMixedFormat => "narrow"
+      | ShortMixedFormat => "short"
+      | LongMixedFormat => "long"
+      | NumericMixedFormat => "numeric"
+      | TwoDigitMixedFormat => "2-digit"
+      },
+    mixedFormat,
   )
   |> Js.Nullable.fromOption;
 
@@ -134,15 +120,12 @@ type timeZoneName =
 
 let mapReasonTimeZoneNameToJs = timeZoneName =>
   Js.Option.map(
-    [@bs]
-    (
-      timeZoneName =>
-        switch timeZoneName {
-        | ShortTimeZoneName => "short"
-        | LongTimeZoneName => "long"
-        }
-    ),
-    timeZoneName
+    (. timeZoneName) =>
+      switch (timeZoneName) {
+      | ShortTimeZoneName => "short"
+      | LongTimeZoneName => "long"
+      },
+    timeZoneName,
   )
   |> Js.Nullable.fromOption;
 
@@ -161,7 +144,7 @@ type dateTimeFormatOptionsRe = {
   "minute": option(numeralFormat),
   "second": option(numeralFormat),
   "timeZoneName": option(timeZoneName),
-  "format": option(string)
+  "format": option(string),
 };
 
 type dateTimeFormatOptionsJs = {
@@ -179,7 +162,7 @@ type dateTimeFormatOptionsJs = {
   "minute": Js.nullable(string),
   "second": Js.nullable(string),
   "timeZoneName": Js.nullable(string),
-  "format": Js.nullable(string)
+  "format": Js.nullable(string),
 };
 
 let mapReasonDateTimeFormatOptionsToJs =
@@ -198,7 +181,7 @@ let mapReasonDateTimeFormatOptionsToJs =
   "minute": options##minute |> mapReasonNumeralFormatToJs,
   "second": options##second |> mapReasonNumeralFormatToJs,
   "timeZoneName": options##timeZoneName |> mapReasonTimeZoneNameToJs,
-  "format": options##format |> Js.Nullable.fromOption
+  "format": options##format |> Js.Nullable.fromOption,
 };
 
 type relativeStyle =
@@ -207,15 +190,12 @@ type relativeStyle =
 
 let mapReasonRelativeStyleToJs = relativeStyle =>
   Js.Option.map(
-    [@bs]
-    (
-      relativeStyle =>
-        switch relativeStyle {
-        | BestFitRelativeStyle => "best fit"
-        | NumericRelativeStyle => "numeric"
-        }
-    ),
-    relativeStyle
+    (. relativeStyle) =>
+      switch (relativeStyle) {
+      | BestFitRelativeStyle => "best fit"
+      | NumericRelativeStyle => "numeric"
+      },
+    relativeStyle,
   )
   |> Js.Nullable.fromOption;
 
@@ -229,19 +209,16 @@ type units =
 
 let mapReasonUnitsToJs = units =>
   Js.Option.map(
-    [@bs]
-    (
-      units =>
-        switch units {
-        | Second => "second"
-        | Minute => "minute"
-        | Hour => "hour"
-        | Day => "day"
-        | Month => "month"
-        | Year => "year"
-        }
-    ),
-    units
+    (. units) =>
+      switch (units) {
+      | Second => "second"
+      | Minute => "minute"
+      | Hour => "hour"
+      | Day => "day"
+      | Month => "month"
+      | Year => "year"
+      },
+    units,
   )
   |> Js.Nullable.fromOption;
 
@@ -250,7 +227,7 @@ type relativeFormatOptionsRe = {
   "style": option(relativeStyle),
   "units": option(units),
   "format": option(string),
-  "now": option(int)
+  "now": option(int),
 };
 
 type relativeFormatOptionsJs = {
@@ -258,7 +235,7 @@ type relativeFormatOptionsJs = {
   "style": Js.nullable(string),
   "units": Js.nullable(string),
   "format": Js.nullable(string),
-  "now": Js.nullable(int)
+  "now": Js.nullable(int),
 };
 
 let mapReasonRelativeFormatOptionsToJs =
@@ -267,7 +244,7 @@ let mapReasonRelativeFormatOptionsToJs =
   "style": options##style |> mapReasonRelativeStyleToJs,
   "units": options##units |> mapReasonUnitsToJs,
   "format": options##format |> Js.Nullable.fromOption,
-  "now": options##now |> Js.Nullable.fromOption
+  "now": options##now |> Js.Nullable.fromOption,
 };
 
 type numberStyle =
@@ -277,16 +254,13 @@ type numberStyle =
 
 let mapReasonNumberStyleToJs = numberStyle =>
   Js.Option.map(
-    [@bs]
-    (
-      numberStyle =>
-        switch numberStyle {
-        | DecimalNumberStyle => "decimal"
-        | CurrencyNumberStyle => "currency"
-        | PercentNumberStyle => "percent"
-        }
-    ),
-    numberStyle
+    (. numberStyle) =>
+      switch (numberStyle) {
+      | DecimalNumberStyle => "decimal"
+      | CurrencyNumberStyle => "currency"
+      | PercentNumberStyle => "percent"
+      },
+    numberStyle,
   )
   |> Js.Nullable.fromOption;
 
@@ -297,16 +271,13 @@ type currencyDisplay =
 
 let mapReasonCurrencyDisplayToJs = currencyDisplay =>
   Js.Option.map(
-    [@bs]
-    (
-      currencyDisplay =>
-        switch currencyDisplay {
-        | SymbolCurrencyDisplay => "symbol"
-        | CodeCurrencyDisplay => "code"
-        | NameCurrencyDisplay => "name"
-        }
-    ),
-    currencyDisplay
+    (. currencyDisplay) =>
+      switch (currencyDisplay) {
+      | SymbolCurrencyDisplay => "symbol"
+      | CodeCurrencyDisplay => "code"
+      | NameCurrencyDisplay => "name"
+      },
+    currencyDisplay,
   )
   |> Js.Nullable.fromOption;
 
@@ -321,7 +292,7 @@ type numberFormatOptionsRe = {
   "minimumFractionDigits": option(int),
   "maximumFractionDigits": option(int),
   "minimumSignificantDigits": option(int),
-  "maximumSignificantDigits": option(int)
+  "maximumSignificantDigits": option(int),
 };
 
 type numberFormatOptionsJs = {
@@ -335,7 +306,7 @@ type numberFormatOptionsJs = {
   "minimumFractionDigits": Js.nullable(int),
   "maximumFractionDigits": Js.nullable(int),
   "minimumSignificantDigits": Js.nullable(int),
-  "maximumSignificantDigits": Js.nullable(int)
+  "maximumSignificantDigits": Js.nullable(int),
 };
 
 let mapReasonNumberFormatOptionsToJs = options => {
@@ -353,7 +324,7 @@ let mapReasonNumberFormatOptionsToJs = options => {
   "minimumSignificantDigits":
     options##minimumSignificantDigits |> Js.Nullable.fromOption,
   "maximumSignificantDigits":
-    options##maximumSignificantDigits |> Js.Nullable.fromOption
+    options##maximumSignificantDigits |> Js.Nullable.fromOption,
 };
 
 type pluralStyle =
@@ -362,15 +333,12 @@ type pluralStyle =
 
 let mapReasonPluralStyleToJs = pluralStyle =>
   Js.Option.map(
-    [@bs]
-    (
-      pluralStyle =>
-        switch pluralStyle {
-        | CardinalPluralStyle => "cardinal"
-        | OrdinalPluralStyle => "ordinal"
-        }
-    ),
-    pluralStyle
+    (. pluralStyle) =>
+      switch (pluralStyle) {
+      | CardinalPluralStyle => "cardinal"
+      | OrdinalPluralStyle => "ordinal"
+      },
+    pluralStyle,
   )
   |> Js.Nullable.fromOption;
 
@@ -379,7 +347,7 @@ type pluralFormatOptionsRe = {. "style": option(pluralStyle)};
 type pluralFormatOptionsJs = {. "style": Js.nullable(string)};
 
 let mapReasonPluralFormatOptionsToJs = options => {
-  "style": options##style |> mapReasonPluralStyleToJs
+  "style": options##style |> mapReasonPluralStyleToJs,
 };
 
 /* Components */
@@ -405,7 +373,7 @@ type domTag =
   | Sup;
 
 let mapDomTagToString = tag =>
-  switch tag {
+  switch (tag) {
   | Span => "span"
   | Div => "div"
   | P => "p"
@@ -428,7 +396,7 @@ let mapDomTagToString = tag =>
   };
 
 let mapOptDomTagToString = tag =>
-  switch tag {
+  switch (tag) {
   | Some(tag) => Some(tag |> mapDomTagToString)
   | None => None
   };
@@ -445,7 +413,7 @@ module IntlProvider = {
         ~defaultFormats: option(Js.t({..}))=?, /* TODO */
         ~textComponent: option(domTag)=?,
         ~initialNow: option(int)=?,
-        children
+        children,
       ) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
@@ -457,9 +425,9 @@ module IntlProvider = {
         "defaultFormats": defaultFormats |> Js.Nullable.fromOption,
         "textComponent":
           textComponent |> mapOptDomTagToString |> Js.Nullable.fromOption,
-        "initialNow": initialNow |> Js.Nullable.fromOption
+        "initialNow": initialNow |> Js.Nullable.fromOption,
       },
-      children
+      children,
     );
 };
 
@@ -472,19 +440,26 @@ type intlJs('t) =
     "defaultLocale": string,
     "defaultFormats": Js.t({..}), /* TODO */
     "formatDate":
-      [@bs.meth] ((Js.Date.t, Js.nullable(dateTimeFormatOptionsJs)) => string),
+      [@bs.meth] (
+        (Js.Date.t, Js.nullable(dateTimeFormatOptionsJs)) => string
+      ),
     "formatTime":
-      [@bs.meth] ((Js.Date.t, Js.nullable(dateTimeFormatOptionsJs)) => string),
+      [@bs.meth] (
+        (Js.Date.t, Js.nullable(dateTimeFormatOptionsJs)) => string
+      ),
     "formatRelative":
-      [@bs.meth] ((Js.Date.t, Js.nullable(relativeFormatOptionsJs)) => string),
+      [@bs.meth] (
+        (Js.Date.t, Js.nullable(relativeFormatOptionsJs)) => string
+      ),
     "formatNumber":
       [@bs.meth] ((float, Js.nullable(numberFormatOptionsJs)) => string),
     "formatPlural":
       [@bs.meth] ((int, Js.nullable(pluralFormatOptionsJs)) => string),
-    "formatMessage": [@bs.meth] ((message, Js.nullable(Js.t({..}))) => string),
+    "formatMessage":
+      [@bs.meth] ((message, Js.nullable(Js.t({..}))) => string),
     "formatHTMLMessage":
       [@bs.meth] ((message, Js.nullable(Js.t({..}))) => string),
-    "now": [@bs.meth] (unit => int)
+    "now": [@bs.meth] (unit => int),
   } as 't;
 
 type intl('t) = {
@@ -509,7 +484,7 @@ type intl('t) = {
   formatMessageWithValues: (Js.t({..} as 't), message) => string,
   formatHTMLMessage: message => string,
   formatHTMLMessageWithValues: (Js.t({..} as 't), message) => string,
-  now: unit => int
+  now: unit => int,
 };
 
 let mapIntlJsToReason = (intlJs: intlJs('t)) : intl('a) => {
@@ -524,7 +499,7 @@ let mapIntlJsToReason = (intlJs: intlJs('t)) : intl('a) => {
     intlJs##formatDate(
       value,
       Some(options |> mapReasonDateTimeFormatOptionsToJs)
-      |> Js.Nullable.fromOption
+      |> Js.Nullable.fromOption,
     ),
   formatTime: value =>
     intlJs##formatTime(value, None |> Js.Nullable.fromOption),
@@ -532,7 +507,7 @@ let mapIntlJsToReason = (intlJs: intlJs('t)) : intl('a) => {
     intlJs##formatTime(
       value,
       Some(options |> mapReasonDateTimeFormatOptionsToJs)
-      |> Js.Nullable.fromOption
+      |> Js.Nullable.fromOption,
     ),
   formatRelative: value =>
     intlJs##formatRelative(value, None |> Js.Nullable.fromOption),
@@ -540,15 +515,18 @@ let mapIntlJsToReason = (intlJs: intlJs('t)) : intl('a) => {
     intlJs##formatRelative(
       value,
       Some(options |> mapReasonRelativeFormatOptionsToJs)
-      |> Js.Nullable.fromOption
+      |> Js.Nullable.fromOption,
     ),
   formatInt: value =>
-    intlJs##formatNumber(value |> float_of_int, None |> Js.Nullable.fromOption),
+    intlJs##formatNumber(
+      value |> float_of_int,
+      None |> Js.Nullable.fromOption,
+    ),
   formatIntWithOptions: (options, value) =>
     intlJs##formatNumber(
       value |> float_of_int,
       Some(options |> mapReasonNumberFormatOptionsToJs)
-      |> Js.Nullable.fromOption
+      |> Js.Nullable.fromOption,
     ),
   formatFloat: value =>
     intlJs##formatNumber(value, None |> Js.Nullable.fromOption),
@@ -556,7 +534,7 @@ let mapIntlJsToReason = (intlJs: intlJs('t)) : intl('a) => {
     intlJs##formatNumber(
       value,
       Some(options |> mapReasonNumberFormatOptionsToJs)
-      |> Js.Nullable.fromOption
+      |> Js.Nullable.fromOption,
     ),
   formatPlural: value =>
     intlJs##formatPlural(value, None |> Js.Nullable.fromOption),
@@ -564,7 +542,7 @@ let mapIntlJsToReason = (intlJs: intlJs('t)) : intl('a) => {
     intlJs##formatPlural(
       value,
       Some(options |> mapReasonPluralFormatOptionsToJs)
-      |> Js.Nullable.fromOption
+      |> Js.Nullable.fromOption,
     ),
   formatMessage: message =>
     intlJs##formatMessage(message, None |> Js.Nullable.fromOption),
@@ -573,8 +551,11 @@ let mapIntlJsToReason = (intlJs: intlJs('t)) : intl('a) => {
   formatHTMLMessage: message =>
     intlJs##formatHTMLMessage(message, None |> Js.Nullable.fromOption),
   formatHTMLMessageWithValues: (values, message) =>
-    intlJs##formatHTMLMessage(message, Some(values) |> Js.Nullable.fromOption),
-  now: () => intlJs##now()
+    intlJs##formatHTMLMessage(
+      message,
+      Some(values) |> Js.Nullable.fromOption,
+    ),
+  now: () => intlJs##now(),
 };
 
 module IntlInjector = {
@@ -595,7 +576,7 @@ module FormattedMessage = {
         ~message: message,
         ~values: option(Js.t({..}))=?,
         ~tagName: option(domTag)=?,
-        _
+        _,
       ) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
@@ -603,9 +584,9 @@ module FormattedMessage = {
         "id": message##id,
         "defaultMessage": message##defaultMessage,
         "values": values |> Js.Nullable.fromOption,
-        "tagName": tagName |> mapOptDomTagToString |> Js.Nullable.fromOption
+        "tagName": tagName |> mapOptDomTagToString |> Js.Nullable.fromOption,
       },
-      [||]
+      [||],
     );
 };
 
@@ -628,9 +609,9 @@ let messagesArrayToDict = (translation: jsonMessages) =>
          Js.Dict.set(
            dict,
            message##id,
-           unicodeMessage !== "" ? unicodeMessage : unicodeDefaultMessage
+           unicodeMessage !== "" ? unicodeMessage : unicodeDefaultMessage,
          );
          dict;
        },
-       Js.Dict.empty()
+       Js.Dict.empty(),
      );
