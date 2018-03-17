@@ -9,7 +9,7 @@
     "start": "bsb -clean-world -make-world && webpack --watch",
     "build": "bsb -clean-world -make-world && webpack",
     "clean": "bsb -clean-world",
-    "refmt": "find . -name '*.re' -exec refmt --in-place {} \\;",
+    "refmt": "find -E . -regex '.+\\.rei?' -exec refmt --in-place {} \\;",
     "test": "exit 0",
     "preversion": "yarn run clean && yarn run refmt"
   },
