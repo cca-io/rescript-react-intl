@@ -559,8 +559,14 @@ let mapIntlJsToReason = (intlJs: intlJs('t)) : intl('a) => {
 };
 
 module IntlInjector = {
-  [@bs.module "./IntlInjector.js"]
-  external reactClass : ReasonReact.reactClass = "default";
+  let reactClass: ReasonReact.reactClass = [%bs.raw
+    {|
+    require("react-intl").injectIntl(function(_ref) {
+      var intl = _ref.intl, children = _ref.children;
+      return children(intl);
+    })
+    |}
+  ];
   let make = children =>
     ReasonReact.wrapJsForReason(
       ~reactClass, ~props=Js.Obj.empty(), (intlJs: intlJs('t)) =>
