@@ -1,6 +1,6 @@
 {
   "name": "bs-react-intl",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "BuckleScript bindings to react-intl",
   "author": "Alex Fedoseev <alex.fedoseev@gmail.com>",
   "license": "MIT",
