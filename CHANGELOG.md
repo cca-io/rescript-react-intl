@@ -1,3 +1,7 @@
+# 0.3.0
+* Add `FormattedDate` component.
+* Add `FormattedTime` component.
+
 # 0.2.1
 * Inline `injectIntl` HOC.
 
