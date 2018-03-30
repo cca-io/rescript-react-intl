@@ -22,16 +22,16 @@ yarn run build
 Then open some `*.html` from [`examples`](./examples) folder.
 
 ## Status
-Despite lots of unchecked the most hard work is done. I'll add bindings to the rest of the components once I need them. Fell free to help me out and submit PR.
+Despite lots of unchecked the most hard work is done. I'll add bindings to the rest of the components once I need them. Feel free to help me out and submit a PR.
 
 - [x] addLocaleData
 - [x] intlShape
 - [x] injectIntl
 - [x] defineMessages
 - [x] IntlProvider
-- [ ] FormattedDate
+- [x] FormattedDate
 - [ ] FormattedDate (children-as-function)
-- [ ] FormattedTime
+- [x] FormattedTime
 - [ ] FormattedTime (children-as-function)
 - [ ] FormattedRelative
 - [ ] FormattedRelative (children-as-function)

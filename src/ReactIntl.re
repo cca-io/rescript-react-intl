@@ -621,6 +621,96 @@ module DefinedMessage = {
     );
 };
 
+module FormattedDate = {
+  [@bs.module "react-intl"]
+  external reactClass : ReasonReact.reactClass = "FormattedDate";
+  let make =
+      (
+        ~value: Js.Date.t,
+        ~format: option(string)=?,
+        ~localeMatcher: option(localeMatcher)=?,
+        ~formatMatcher: option(formatMatcher)=?,
+        ~timeZone: option(string)=?,
+        ~hour12: option(bool)=?,
+        ~weekday: option(textualFormat)=?,
+        ~era: option(textualFormat)=?,
+        ~year: option(numeralFormat)=?,
+        ~month: option(mixedFormat)=?,
+        ~day: option(numeralFormat)=?,
+        ~hour: option(numeralFormat)=?,
+        ~minute: option(numeralFormat)=?,
+        ~second: option(numeralFormat)=?,
+        ~timeZoneName: option(timeZoneName)=?,
+        _,
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "value": value,
+        "format": format |> Js.Nullable.fromOption,
+        "localeMatcher": localeMatcher |> mapReasonLocaleMatcherToJs,
+        "formatMatcher": formatMatcher |> mapReasonFormatMatcherToJs,
+        "timeZone": timeZone |> Js.Nullable.fromOption,
+        "hour12": hour12 |> mapOptBoolToJs,
+        "weekday": weekday |> mapReasonTextualFormatToJs,
+        "era": era |> mapReasonTextualFormatToJs,
+        "year": year |> mapReasonNumeralFormatToJs,
+        "month": month |> mapReasonMixedFormatToJs,
+        "day": day |> mapReasonNumeralFormatToJs,
+        "hour": hour |> mapReasonNumeralFormatToJs,
+        "minute": minute |> mapReasonNumeralFormatToJs,
+        "second": second |> mapReasonNumeralFormatToJs,
+        "timeZoneName": timeZoneName |> mapReasonTimeZoneNameToJs,
+      },
+      [||],
+    );
+};
+
+module FormattedTime = {
+  [@bs.module "react-intl"]
+  external reactClass : ReasonReact.reactClass = "FormattedTime";
+  let make =
+      (
+        ~value: Js.Date.t,
+        ~format: option(string)=?,
+        ~localeMatcher: option(localeMatcher)=?,
+        ~formatMatcher: option(formatMatcher)=?,
+        ~timeZone: option(string)=?,
+        ~hour12: option(bool)=?,
+        ~weekday: option(textualFormat)=?,
+        ~era: option(textualFormat)=?,
+        ~year: option(numeralFormat)=?,
+        ~month: option(mixedFormat)=?,
+        ~day: option(numeralFormat)=?,
+        ~hour: option(numeralFormat)=?,
+        ~minute: option(numeralFormat)=?,
+        ~second: option(numeralFormat)=?,
+        ~timeZoneName: option(timeZoneName)=?,
+        _,
+      ) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass,
+      ~props={
+        "value": value,
+        "format": format |> Js.Nullable.fromOption,
+        "localeMatcher": localeMatcher |> mapReasonLocaleMatcherToJs,
+        "formatMatcher": formatMatcher |> mapReasonFormatMatcherToJs,
+        "timeZone": timeZone |> Js.Nullable.fromOption,
+        "hour12": hour12 |> mapOptBoolToJs,
+        "weekday": weekday |> mapReasonTextualFormatToJs,
+        "era": era |> mapReasonTextualFormatToJs,
+        "year": year |> mapReasonNumeralFormatToJs,
+        "month": month |> mapReasonMixedFormatToJs,
+        "day": day |> mapReasonNumeralFormatToJs,
+        "hour": hour |> mapReasonNumeralFormatToJs,
+        "minute": minute |> mapReasonNumeralFormatToJs,
+        "second": second |> mapReasonNumeralFormatToJs,
+        "timeZoneName": timeZoneName |> mapReasonTimeZoneNameToJs,
+      },
+      [||],
+    );
+};
+
 /* Utils */
 let wrapUnicodeString = (input: string) => {j|$input|j};
 

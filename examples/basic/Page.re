@@ -32,11 +32,16 @@ let make = (~locale, ~setLocale, _) => {
                    <ReactIntl.DefinedMessage message=pageLocale##today />
                    (" " |> ReasonReact.stringToElement)
                    (
-                     Js.Date.now()
-                     |> Js.Date.fromFloat
+                     Js.Date.make()
                      |> intl.formatDate
                      |> ReasonReact.stringToElement
                    )
+                   (" (intl.formatDate)" |> ReasonReact.stringToElement)
+                   <br />
+                   <ReactIntl.DefinedMessage message=pageLocale##today />
+                   (" " |> ReasonReact.stringToElement)
+                   <ReactIntl.FormattedDate value=(Js.Date.make()) />
+                   (" (FormattedDate)" |> ReasonReact.stringToElement)
                  </div>
              )
         </ReactIntl.IntlInjector>
