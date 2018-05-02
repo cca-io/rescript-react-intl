@@ -1,3 +1,6 @@
+# 0.4.0
+* **[ BREAKING ]** `bs-platform` updated to `3.0.0`.
+
 # 0.3.0
 * Add `FormattedDate` component.
 * Add `FormattedTime` component.
