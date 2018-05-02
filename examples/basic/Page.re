@@ -7,7 +7,7 @@ let make = (~locale, ~setLocale, _) => {
   let setEnLocale = (_) => Locale.En |> setLocale;
   let setRuLocale = (_) => Locale.Ru |> setLocale;
   let localeToElement = locale =>
-    locale |> Locale.mapLocaleToString |> ReasonReact.stringToElement;
+    locale |> Locale.mapLocaleToString |> ReasonReact.string;
   {
     ...component,
     render: (_) =>
@@ -22,7 +22,7 @@ let make = (~locale, ~setLocale, _) => {
         </div>
         <div className="message">
           <ReactIntl.DefinedMessage message=pageLocale##hello />
-          (" " |> ReasonReact.stringToElement)
+          (" " |> ReasonReact.string)
           <ReactIntl.DefinedMessage message=pageLocale##world />
         </div>
         <ReactIntl.IntlInjector>
@@ -30,18 +30,14 @@ let make = (~locale, ~setLocale, _) => {
                intl =>
                  <div>
                    <ReactIntl.DefinedMessage message=pageLocale##today />
-                   (" " |> ReasonReact.stringToElement)
-                   (
-                     Js.Date.make()
-                     |> intl.formatDate
-                     |> ReasonReact.stringToElement
-                   )
-                   (" (intl.formatDate)" |> ReasonReact.stringToElement)
+                   (" " |> ReasonReact.string)
+                   (Js.Date.make() |> intl.formatDate |> ReasonReact.string)
+                   (" (intl.formatDate)" |> ReasonReact.string)
                    <br />
                    <ReactIntl.DefinedMessage message=pageLocale##today />
-                   (" " |> ReasonReact.stringToElement)
+                   (" " |> ReasonReact.string)
                    <ReactIntl.FormattedDate value=(Js.Date.make()) />
-                   (" (FormattedDate)" |> ReasonReact.stringToElement)
+                   (" (FormattedDate)" |> ReasonReact.string)
                  </div>
              )
         </ReactIntl.IntlInjector>

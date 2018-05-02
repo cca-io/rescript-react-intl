@@ -14,17 +14,17 @@
     "preversion": "yarn run clean && yarn run refmt"
   },
   "peerDependencies": {
-    "bs-platform": "^2.2.2",
+    "bs-platform": "^3.0.0",
     "react-intl": "^2.4.0",
-    "reason-react": "^0.3.2"
+    "reason-react": "^0.4.1"
   },
   "devDependencies": {
-    "bs-platform": "2.2.2",
+    "bs-platform": "3.0.0",
     "prop-types": "15.6.0",
     "react": "16.2.0",
     "react-dom": "16.2.0",
     "react-intl": "2.4.0",
-    "reason-react": "0.3.2",
+    "reason-react": "0.4.1",
     "webpack": "3.10.0"
   },
   "repository": {

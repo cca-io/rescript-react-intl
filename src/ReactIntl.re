@@ -27,10 +27,6 @@ type defineMessages('m) = (. 'm) => 'm;
 external defineMessages : defineMessages(Js.t({..})) = "";
 
 /* Formatters */
-let mapOptBoolToJs = maybeBool =>
-  Js.Option.map((. bool) => bool |> Js.Boolean.to_js_boolean, maybeBool)
-  |> Js.Nullable.fromOption;
-
 type localeMatcher =
   | BestFitLocaleMatcher
   | LookupLocaleMatcher;
@@ -152,7 +148,7 @@ type dateTimeFormatOptionsJs = {
   "localeMatcher": Js.nullable(string),
   "formatMatcher": Js.nullable(string),
   "timeZone": Js.nullable(string),
-  "hour12": Js.nullable(Js.boolean),
+  "hour12": Js.nullable(bool),
   "weekday": Js.nullable(string),
   "era": Js.nullable(string),
   "year": Js.nullable(string),
@@ -171,7 +167,7 @@ let mapReasonDateTimeFormatOptionsToJs =
   "localeMatcher": options##localeMatcher |> mapReasonLocaleMatcherToJs,
   "formatMatcher": options##formatMatcher |> mapReasonFormatMatcherToJs,
   "timeZone": options##timeZone |> Js.Nullable.fromOption,
-  "hour12": options##hour12 |> mapOptBoolToJs,
+  "hour12": options##hour12 |> Js.Nullable.fromOption,
   "weekday": options##weekday |> mapReasonTextualFormatToJs,
   "era": options##era |> mapReasonTextualFormatToJs,
   "year": options##year |> mapReasonNumeralFormatToJs,
@@ -301,7 +297,7 @@ type numberFormatOptionsJs = {
   "style": Js.nullable(string),
   "currency": Js.nullable(string),
   "currencyDisplay": Js.nullable(string),
-  "useGrouping": Js.nullable(Js.boolean),
+  "useGrouping": Js.nullable(bool),
   "minimumIntegerDigits": Js.nullable(int),
   "minimumFractionDigits": Js.nullable(int),
   "maximumFractionDigits": Js.nullable(int),
@@ -314,7 +310,7 @@ let mapReasonNumberFormatOptionsToJs = options => {
   "style": options##style |> mapReasonNumberStyleToJs,
   "currency": options##currency |> Js.Nullable.fromOption,
   "currencyDisplay": options##currencyDisplay |> mapReasonCurrencyDisplayToJs,
-  "useGrouping": options##useGrouping |> mapOptBoolToJs,
+  "useGrouping": options##useGrouping |> Js.Nullable.fromOption,
   "minimumIntegerDigits":
     options##minimumIntegerDigits |> Js.Nullable.fromOption,
   "minimumFractionDigits":
@@ -651,7 +647,7 @@ module FormattedDate = {
         "localeMatcher": localeMatcher |> mapReasonLocaleMatcherToJs,
         "formatMatcher": formatMatcher |> mapReasonFormatMatcherToJs,
         "timeZone": timeZone |> Js.Nullable.fromOption,
-        "hour12": hour12 |> mapOptBoolToJs,
+        "hour12": hour12 |> Js.Nullable.fromOption,
         "weekday": weekday |> mapReasonTextualFormatToJs,
         "era": era |> mapReasonTextualFormatToJs,
         "year": year |> mapReasonNumeralFormatToJs,
@@ -696,7 +692,7 @@ module FormattedTime = {
         "localeMatcher": localeMatcher |> mapReasonLocaleMatcherToJs,
         "formatMatcher": formatMatcher |> mapReasonFormatMatcherToJs,
         "timeZone": timeZone |> Js.Nullable.fromOption,
-        "hour12": hour12 |> mapOptBoolToJs,
+        "hour12": hour12 |> Js.Nullable.fromOption,
         "weekday": weekday |> mapReasonTextualFormatToJs,
         "era": era |> mapReasonTextualFormatToJs,
         "year": year |> mapReasonNumeralFormatToJs,
