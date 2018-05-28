@@ -1,6 +1,8 @@
 # bs-react-intl
 
-BuckleScript bindings to [react-intl](https://github.com/yahoo/react-intl).
+[BuckleScript](https://bucklescript.github.io) bindings to [react-intl](https://github.com/yahoo/react-intl).
+
+To extract messages from [Reason](https://reasonml.github.io) source files for localization, use [bs-react-intl-extractor](https://github.com/cknitt/bs-react-intl-extractor).
 
 ## Installation
 ```shell
