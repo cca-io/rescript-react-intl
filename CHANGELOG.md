@@ -1,3 +1,7 @@
+# 0.5.0
+* **[ BREAKING ]** `bs-platform` updated to `4.0.5`.
+* **[ BREAKING ]** `reason-react` updated to `0.5.3`.
+
 # 0.4.0
 * **[ BREAKING ]** `bs-platform` updated to `3.0.0`.
 
