@@ -365,6 +365,10 @@ type domTag =
   | Sub
   | Sup;
 
+type textComponent =
+  | DomTag(domTag)
+  | ReactComponent(ReasonReact.reactClass);
+
 let mapDomTagToString = tag =>
   switch (tag) {
   | Span => "span"
@@ -394,6 +398,15 @@ let mapOptDomTagToString = tag =>
   | None => None
   };
 
+let mapTextComponentToJs = textComponent =>
+  switch (textComponent) {
+  | DomTag(domTag) => mapDomTagToString(domTag)->Obj.magic
+  | ReactComponent(reactComponent) => reactComponent->Obj.magic
+  };
+
+let mapOptTextComponentToJs = textComponent =>
+  textComponent->Belt.Option.map(mapTextComponentToJs);
+
 module IntlProvider = {
   [@bs.module "react-intl"]
   external reactClass: ReasonReact.reactClass = "IntlProvider";
@@ -404,7 +417,7 @@ module IntlProvider = {
         ~messages: option(Js.Dict.t(string))=?,
         ~defaultLocale: option(string)=?,
         ~defaultFormats: option(Js.t({..}))=?, /* TODO */
-        ~textComponent: option(domTag)=?,
+        ~textComponent: option(textComponent)=?,
         ~initialNow: option(int)=?,
         children,
       ) =>
@@ -417,7 +430,7 @@ module IntlProvider = {
         "defaultLocale": defaultLocale |> Js.Nullable.fromOption,
         "defaultFormats": defaultFormats |> Js.Nullable.fromOption,
         "textComponent":
-          textComponent |> mapOptDomTagToString |> Js.Nullable.fromOption,
+          textComponent |> mapOptTextComponentToJs |> Js.Nullable.fromOption,
         "initialNow": initialNow |> Js.Nullable.fromOption,
       },
       children,
