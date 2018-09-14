@@ -17,14 +17,13 @@ type jsonMessages = array(jsonMessage);
 /* addLocaleData */
 type localeData('t) = {.. "locale": string} as 't;
 
-[@bs.module "react-intl"]
-external addLocaleData : localeData('t) => unit = "";
+[@bs.module "react-intl"] external addLocaleData: localeData('t) => unit = "";
 
 /* defineMessages */
 type defineMessages('m) = (. 'm) => 'm;
 
 [@bs.module "react-intl"]
-external defineMessages : defineMessages(Js.t({..})) = "";
+external defineMessages: defineMessages(Js.t({..})) = "";
 
 /* Formatters */
 type localeMatcher =
@@ -162,8 +161,7 @@ type dateTimeFormatOptionsJs = {
 };
 
 let mapReasonDateTimeFormatOptionsToJs =
-    (options: dateTimeFormatOptionsRe)
-    : dateTimeFormatOptionsJs => {
+    (options: dateTimeFormatOptionsRe): dateTimeFormatOptionsJs => {
   "localeMatcher": options##localeMatcher |> mapReasonLocaleMatcherToJs,
   "formatMatcher": options##formatMatcher |> mapReasonFormatMatcherToJs,
   "timeZone": options##timeZone |> Js.Nullable.fromOption,
@@ -235,8 +233,7 @@ type relativeFormatOptionsJs = {
 };
 
 let mapReasonRelativeFormatOptionsToJs =
-    (options: relativeFormatOptionsRe)
-    : relativeFormatOptionsJs => {
+    (options: relativeFormatOptionsRe): relativeFormatOptionsJs => {
   "style": options##style |> mapReasonRelativeStyleToJs,
   "units": options##units |> mapReasonUnitsToJs,
   "format": options##format |> Js.Nullable.fromOption,
@@ -399,7 +396,7 @@ let mapOptDomTagToString = tag =>
 
 module IntlProvider = {
   [@bs.module "react-intl"]
-  external reactClass : ReasonReact.reactClass = "IntlProvider";
+  external reactClass: ReasonReact.reactClass = "IntlProvider";
   let make =
       (
         ~locale: option(string)=?,
@@ -483,7 +480,7 @@ type intl('t) = {
   now: unit => int,
 };
 
-let mapIntlJsToReason = (intlJs: intlJs('t)) : intl('a) => {
+let mapIntlJsToReason = (intlJs: intlJs('t)): intl('a) => {
   locale: intlJs##locale,
   formats: intlJs##formats,
   messages: intlJs##messages,
@@ -572,7 +569,7 @@ module IntlInjector = {
 
 module FormattedMessage = {
   [@bs.module "react-intl"]
-  external reactClass : ReasonReact.reactClass = "FormattedMessage";
+  external reactClass: ReasonReact.reactClass = "FormattedMessage";
   let make =
       (
         ~id: string,
@@ -597,7 +594,7 @@ module FormattedMessage = {
    It takes the id and defaultMessage props from a passed message object. */
 module DefinedMessage = {
   [@bs.module "react-intl"]
-  external reactClass : ReasonReact.reactClass = "FormattedMessage";
+  external reactClass: ReasonReact.reactClass = "FormattedMessage";
   let make =
       (
         ~message: message,
@@ -619,7 +616,7 @@ module DefinedMessage = {
 
 module FormattedDate = {
   [@bs.module "react-intl"]
-  external reactClass : ReasonReact.reactClass = "FormattedDate";
+  external reactClass: ReasonReact.reactClass = "FormattedDate";
   let make =
       (
         ~value: Js.Date.t,
@@ -664,7 +661,7 @@ module FormattedDate = {
 
 module FormattedTime = {
   [@bs.module "react-intl"]
-  external reactClass : ReasonReact.reactClass = "FormattedTime";
+  external reactClass: ReasonReact.reactClass = "FormattedTime";
   let make =
       (
         ~value: Js.Date.t,

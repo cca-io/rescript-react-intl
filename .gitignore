@@ -1,6 +1,7 @@
 node_modules/
 lib/
-build/
+dist/
+.cache
 .merlin
 .bsb.lock
 *.bs.js

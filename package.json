@@ -6,26 +6,27 @@
   "license": "MIT",
   "main": "src/ReactIntl.bs.js",
   "scripts": {
-    "start": "bsb -clean-world -make-world && webpack --watch",
-    "build": "bsb -clean-world -make-world && webpack",
+    "start": "parcel examples/basic.html",
+    "build": "bsb -clean-world -make-world",
     "clean": "bsb -clean-world",
-    "refmt": "find -E . -regex '.+\\.rei?' -exec refmt --in-place {} \\;",
+    "format": "bsrefmt --in-place **/*.re",
     "test": "exit 0",
-    "preversion": "yarn run clean && yarn run refmt"
+    "preversion": "yarn run clean"
   },
   "peerDependencies": {
-    "bs-platform": "^3.0.0",
+    "bs-platform": "^4.0.5",
     "react-intl": "^2.4.0",
-    "reason-react": "^0.4.1"
+    "reason-react": "^0.5.3"
   },
   "devDependencies": {
-    "bs-platform": "3.0.0",
-    "prop-types": "15.6.0",
-    "react": "16.2.0",
-    "react-dom": "16.2.0",
+    "bs-platform": "4.0.5",
+    "bsb-js": "^1.1.7",
+    "parcel-bundler": "1.9.7",
+    "prop-types": "15.6.2",
+    "react": "16.5.1",
+    "react-dom": "16.5.1",
     "react-intl": "2.4.0",
-    "reason-react": "0.4.1",
-    "webpack": "3.10.0"
+    "reason-react": "0.5.3"
   },
   "repository": {
     "type": "git",
