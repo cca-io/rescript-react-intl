@@ -1,3 +1,6 @@
+# 0.6.0
+* **[ BREAKING ]** Make compatible with React Native ([#13](https://github.com/alexfedoseev/bs-react-intl/pull/13)).
+
 # 0.5.0
 * **[ BREAKING ]** `bs-platform` updated to `4.0.5`.
 * **[ BREAKING ]** `reason-react` updated to `0.5.3`.
