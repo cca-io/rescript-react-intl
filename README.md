@@ -18,10 +18,8 @@ Clone this repo.
 
 ```shell
 yarn install
-yarn run build
+yarn start
 ```
-
-Then open some `*.html` from [`examples`](./examples) folder.
 
 ## Status
 Despite lots of unchecked the most hard work is done. I'll add bindings to the rest of the components once I need them. Feel free to help me out and submit a PR.

@@ -5,13 +5,13 @@
     "message": ""
   },
   {
-    "id": "page.world",
-    "defaultMessage": "World",
+    "id": "page.today",
+    "defaultMessage": "Today is",
     "message": ""
   },
   {
-    "id": "page.today",
-    "defaultMessage": "Today is",
+    "id": "page.world",
+    "defaultMessage": "World",
     "message": ""
   }
 ]

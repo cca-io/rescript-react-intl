@@ -5,6 +5,8 @@ type locale =
   | En
   | Ru;
 
+let all = [|En, Ru|];
+
 let toString =
   fun
   | En => "en"
