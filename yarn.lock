@@ -783,6 +783,10 @@ bs-platform@4.0.5:
   version "4.0.5"
   resolved "https://registry.yarnpkg.com/bs-platform/-/bs-platform-4.0.5.tgz#d4fd9bbdd11765af5b75110a5655065ece05eed6"
 
+bs-react-intl-extractor-bin@0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/bs-react-intl-extractor-bin/-/bs-react-intl-extractor-bin-0.5.0.tgz#52769ce53ff69cbb362271261a047621a82ed3e4"
+
 bsb-js@^1.1.7:
   version "1.1.7"
   resolved "https://registry.yarnpkg.com/bsb-js/-/bsb-js-1.1.7.tgz#12cc91e974f5896b3a2aa8358419d24e56f552c3"

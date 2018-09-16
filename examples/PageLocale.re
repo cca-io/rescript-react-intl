@@ -1,5 +1,6 @@
 let pageLocale =
-  ReactIntl.defineMessages(. {
+  [@intl.messages]
+  {
     "hello": {
       "id": "page.hello",
       "defaultMessage": "Hello",
@@ -12,4 +13,4 @@ let pageLocale =
       "id": "page.today",
       "defaultMessage": "Today is",
     },
-  });
+  };
