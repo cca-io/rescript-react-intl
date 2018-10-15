@@ -407,6 +407,8 @@ let mapTextComponentToJs = textComponent =>
 let mapOptTextComponentToJs = textComponent =>
   textComponent->Belt.Option.map(mapTextComponentToJs);
 
+type errorHandler = string => unit;
+
 module IntlProvider = {
   [@bs.module "react-intl"]
   external reactClass: ReasonReact.reactClass = "IntlProvider";
@@ -419,6 +421,7 @@ module IntlProvider = {
         ~defaultFormats: option(Js.t({..}))=?, /* TODO */
         ~textComponent: option(textComponent)=?,
         ~initialNow: option(int)=?,
+        ~onError: option(errorHandler)=?,
         children,
       ) =>
     ReasonReact.wrapJsForReason(
@@ -432,6 +435,7 @@ module IntlProvider = {
         "textComponent":
           textComponent |> mapOptTextComponentToJs |> Js.Nullable.fromOption,
         "initialNow": initialNow |> Js.Nullable.fromOption,
+        "onError": onError |> Js.Nullable.fromOption,
       },
       children,
     );
