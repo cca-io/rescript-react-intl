@@ -17,7 +17,7 @@
   },
   "peerDependencies": {
     "bs-platform": "^4.0.5",
-    "react-intl": "^2.4.0",
+    "react-intl": "^2.7.1",
     "reason-react": "^0.5.3"
   },
   "devDependencies": {
@@ -28,7 +28,7 @@
     "prop-types": "15.6.2",
     "react": "16.5.1",
     "react-dom": "16.5.1",
-    "react-intl": "2.4.0",
+    "react-intl": "2.7.1",
     "reason-react": "0.5.3"
   },
   "repository": {
