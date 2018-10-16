@@ -1,3 +1,6 @@
+# 0.7.0
+* Add support for react-intl 2.7.x custom error handling ([#15](https://github.com/alexfedoseev/bs-react-intl/pull/15)).
+
 # 0.6.0
 * **[ BREAKING ]** Make compatible with React Native ([#13](https://github.com/alexfedoseev/bs-react-intl/pull/13)).
 
