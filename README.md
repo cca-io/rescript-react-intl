@@ -1,5 +1,7 @@
 # bs-react-intl
 
+[![NPM](https://nodei.co/npm/bs-react-intl.png?compact=true)](https://nodei.co/npm/bs-react-intl/)
+
 [BuckleScript](https://bucklescript.github.io) bindings to [react-intl](https://github.com/yahoo/react-intl).
 
 To extract messages from [Reason](https://reasonml.github.io) source files for localization, use [bs-react-intl-extractor](https://github.com/cknitt/bs-react-intl-extractor).
