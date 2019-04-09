@@ -1,3 +1,7 @@
+# 0.8.0
+* **[ BREAKING ]** `bs-platform` updated to `5.0.0`.
+* **[ BREAKING ]** `reason-react` updated to `0.6.0`.
+
 # 0.7.0
 * Add support for react-intl 2.7.x custom error handling ([#15](https://github.com/alexfedoseev/bs-react-intl/pull/15)).
 
