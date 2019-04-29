@@ -8,6 +8,7 @@
   "scripts": {
     "start": "parcel examples/index.html",
     "build": "bsb -clean-world -make-world",
+    "watch": "bsb -clean-world -make-world -w",
     "clean": "bsb -clean-world",
     "extract": "node examples/TranslationsExtractor.bs.js",
     "preextract": "yarn run build",
@@ -16,12 +17,12 @@
     "preversion": "yarn run clean"
   },
   "peerDependencies": {
-    "bs-platform": "^5.0.0",
+    "bs-platform": "^5.0.3",
     "react-intl": "^2.7.1",
-    "reason-react": "^0.5.3"
+    "reason-react": "^0.7.0"
   },
   "devDependencies": {
-    "bs-platform": "5.0.0",
+    "bs-platform": "5.0.3",
     "bs-react-intl-extractor-bin": "0.7.0",
     "bsb-js": "^1.1.7",
     "parcel-bundler": "1.12.3",
@@ -29,7 +30,7 @@
     "react": "16.8.6",
     "react-dom": "16.8.6",
     "react-intl": "2.8.0",
-    "reason-react": "0.6.0"
+    "reason-react": "0.7.0"
   },
   "repository": {
     "type": "git",

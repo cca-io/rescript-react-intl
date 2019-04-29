@@ -38,8 +38,7 @@ let mapReasonLocaleMatcherToJs = localeMatcher =>
       | LookupLocaleMatcher => "lookup"
       },
     localeMatcher,
-  )
-  |> Js.Nullable.fromOption;
+  );
 
 type formatMatcher =
   | BestFitFormatMatcher
@@ -53,8 +52,7 @@ let mapReasonFormatMatcherToJs = formatMatcher =>
       | BasicFormatMatcher => "basic"
       },
     formatMatcher,
-  )
-  |> Js.Nullable.fromOption;
+  );
 
 type numeralFormat =
   | NumericNumeralFormat
@@ -68,8 +66,7 @@ let mapReasonNumeralFormatToJs = numeralFormat =>
       | TwoDigitNumeralFormat => "2-digit"
       },
     numeralFormat,
-  )
-  |> Js.Nullable.fromOption;
+  );
 
 type textualFormat =
   | NarrowTextualFormat
@@ -85,8 +82,7 @@ let mapReasonTextualFormatToJs = textualFormat =>
       | LongTextualFormat => "long"
       },
     textualFormat,
-  )
-  |> Js.Nullable.fromOption;
+  );
 
 type mixedFormat =
   | NumericMixedFormat
@@ -106,8 +102,7 @@ let mapReasonMixedFormatToJs = mixedFormat =>
       | TwoDigitMixedFormat => "2-digit"
       },
     mixedFormat,
-  )
-  |> Js.Nullable.fromOption;
+  );
 
 type timeZoneName =
   | ShortTimeZoneName
@@ -121,8 +116,7 @@ let mapReasonTimeZoneNameToJs = timeZoneName =>
       | LongTimeZoneName => "long"
       },
     timeZoneName,
-  )
-  |> Js.Nullable.fromOption;
+  );
 
 type dateTimeFormatOptionsRe = {
   .
@@ -144,38 +138,38 @@ type dateTimeFormatOptionsRe = {
 
 type dateTimeFormatOptionsJs = {
   .
-  "localeMatcher": Js.nullable(string),
-  "formatMatcher": Js.nullable(string),
-  "timeZone": Js.nullable(string),
-  "hour12": Js.nullable(bool),
-  "weekday": Js.nullable(string),
-  "era": Js.nullable(string),
-  "year": Js.nullable(string),
-  "month": Js.nullable(string),
-  "day": Js.nullable(string),
-  "hour": Js.nullable(string),
-  "minute": Js.nullable(string),
-  "second": Js.nullable(string),
-  "timeZoneName": Js.nullable(string),
-  "format": Js.nullable(string),
+  "localeMatcher": option(string),
+  "formatMatcher": option(string),
+  "timeZone": option(string),
+  "hour12": option(bool),
+  "weekday": option(string),
+  "era": option(string),
+  "year": option(string),
+  "month": option(string),
+  "day": option(string),
+  "hour": option(string),
+  "minute": option(string),
+  "second": option(string),
+  "timeZoneName": option(string),
+  "format": option(string),
 };
 
 let mapReasonDateTimeFormatOptionsToJs =
     (options: dateTimeFormatOptionsRe): dateTimeFormatOptionsJs => {
-  "localeMatcher": options##localeMatcher |> mapReasonLocaleMatcherToJs,
-  "formatMatcher": options##formatMatcher |> mapReasonFormatMatcherToJs,
-  "timeZone": options##timeZone |> Js.Nullable.fromOption,
-  "hour12": options##hour12 |> Js.Nullable.fromOption,
-  "weekday": options##weekday |> mapReasonTextualFormatToJs,
-  "era": options##era |> mapReasonTextualFormatToJs,
-  "year": options##year |> mapReasonNumeralFormatToJs,
-  "month": options##month |> mapReasonMixedFormatToJs,
-  "day": options##day |> mapReasonNumeralFormatToJs,
-  "hour": options##hour |> mapReasonNumeralFormatToJs,
-  "minute": options##minute |> mapReasonNumeralFormatToJs,
-  "second": options##second |> mapReasonNumeralFormatToJs,
-  "timeZoneName": options##timeZoneName |> mapReasonTimeZoneNameToJs,
-  "format": options##format |> Js.Nullable.fromOption,
+  "localeMatcher": options##localeMatcher->mapReasonLocaleMatcherToJs,
+  "formatMatcher": options##formatMatcher->mapReasonFormatMatcherToJs,
+  "timeZone": options##timeZone,
+  "hour12": options##hour12,
+  "weekday": options##weekday->mapReasonTextualFormatToJs,
+  "era": options##era->mapReasonTextualFormatToJs,
+  "year": options##year->mapReasonNumeralFormatToJs,
+  "month": options##month->mapReasonMixedFormatToJs,
+  "day": options##day->mapReasonNumeralFormatToJs,
+  "hour": options##hour->mapReasonNumeralFormatToJs,
+  "minute": options##minute->mapReasonNumeralFormatToJs,
+  "second": options##second->mapReasonNumeralFormatToJs,
+  "timeZoneName": options##timeZoneName->mapReasonTimeZoneNameToJs,
+  "format": options##format,
 };
 
 type relativeStyle =
@@ -190,8 +184,7 @@ let mapReasonRelativeStyleToJs = relativeStyle =>
       | NumericRelativeStyle => "numeric"
       },
     relativeStyle,
-  )
-  |> Js.Nullable.fromOption;
+  );
 
 type units =
   | Second
@@ -213,8 +206,7 @@ let mapReasonUnitsToJs = units =>
       | Year => "year"
       },
     units,
-  )
-  |> Js.Nullable.fromOption;
+  );
 
 type relativeFormatOptionsRe = {
   .
@@ -226,18 +218,18 @@ type relativeFormatOptionsRe = {
 
 type relativeFormatOptionsJs = {
   .
-  "style": Js.nullable(string),
-  "units": Js.nullable(string),
-  "format": Js.nullable(string),
-  "now": Js.nullable(int),
+  "style": option(string),
+  "units": option(string),
+  "format": option(string),
+  "now": option(int),
 };
 
 let mapReasonRelativeFormatOptionsToJs =
     (options: relativeFormatOptionsRe): relativeFormatOptionsJs => {
-  "style": options##style |> mapReasonRelativeStyleToJs,
-  "units": options##units |> mapReasonUnitsToJs,
-  "format": options##format |> Js.Nullable.fromOption,
-  "now": options##now |> Js.Nullable.fromOption,
+  "style": options##style->mapReasonRelativeStyleToJs,
+  "units": options##units->mapReasonUnitsToJs,
+  "format": options##format,
+  "now": options##now,
 };
 
 type numberStyle =
@@ -254,8 +246,7 @@ let mapReasonNumberStyleToJs = numberStyle =>
       | PercentNumberStyle => "percent"
       },
     numberStyle,
-  )
-  |> Js.Nullable.fromOption;
+  );
 
 type currencyDisplay =
   | SymbolCurrencyDisplay
@@ -271,8 +262,7 @@ let mapReasonCurrencyDisplayToJs = currencyDisplay =>
       | NameCurrencyDisplay => "name"
       },
     currencyDisplay,
-  )
-  |> Js.Nullable.fromOption;
+  );
 
 type numberFormatOptionsRe = {
   .
@@ -290,34 +280,30 @@ type numberFormatOptionsRe = {
 
 type numberFormatOptionsJs = {
   .
-  "localeMatcher": Js.nullable(string),
-  "style": Js.nullable(string),
-  "currency": Js.nullable(string),
-  "currencyDisplay": Js.nullable(string),
-  "useGrouping": Js.nullable(bool),
-  "minimumIntegerDigits": Js.nullable(int),
-  "minimumFractionDigits": Js.nullable(int),
-  "maximumFractionDigits": Js.nullable(int),
-  "minimumSignificantDigits": Js.nullable(int),
-  "maximumSignificantDigits": Js.nullable(int),
+  "localeMatcher": option(string),
+  "style": option(string),
+  "currency": option(string),
+  "currencyDisplay": option(string),
+  "useGrouping": option(bool),
+  "minimumIntegerDigits": option(int),
+  "minimumFractionDigits": option(int),
+  "maximumFractionDigits": option(int),
+  "minimumSignificantDigits": option(int),
+  "maximumSignificantDigits": option(int),
 };
 
-let mapReasonNumberFormatOptionsToJs = options => {
-  "localeMatcher": options##localeMatcher |> mapReasonLocaleMatcherToJs,
-  "style": options##style |> mapReasonNumberStyleToJs,
-  "currency": options##currency |> Js.Nullable.fromOption,
-  "currencyDisplay": options##currencyDisplay |> mapReasonCurrencyDisplayToJs,
-  "useGrouping": options##useGrouping |> Js.Nullable.fromOption,
-  "minimumIntegerDigits":
-    options##minimumIntegerDigits |> Js.Nullable.fromOption,
-  "minimumFractionDigits":
-    options##minimumFractionDigits |> Js.Nullable.fromOption,
-  "maximumFractionDigits":
-    options##maximumFractionDigits |> Js.Nullable.fromOption,
-  "minimumSignificantDigits":
-    options##minimumSignificantDigits |> Js.Nullable.fromOption,
-  "maximumSignificantDigits":
-    options##maximumSignificantDigits |> Js.Nullable.fromOption,
+let mapReasonNumberFormatOptionsToJs =
+    (options: numberFormatOptionsRe): numberFormatOptionsJs => {
+  "localeMatcher": options##localeMatcher->mapReasonLocaleMatcherToJs,
+  "style": options##style->mapReasonNumberStyleToJs,
+  "currency": options##currency,
+  "currencyDisplay": options##currencyDisplay->mapReasonCurrencyDisplayToJs,
+  "useGrouping": options##useGrouping,
+  "minimumIntegerDigits": options##minimumIntegerDigits,
+  "minimumFractionDigits": options##minimumFractionDigits,
+  "maximumFractionDigits": options##maximumFractionDigits,
+  "minimumSignificantDigits": options##minimumSignificantDigits,
+  "maximumSignificantDigits": options##maximumSignificantDigits,
 };
 
 type pluralStyle =
@@ -332,15 +318,14 @@ let mapReasonPluralStyleToJs = pluralStyle =>
       | OrdinalPluralStyle => "ordinal"
       },
     pluralStyle,
-  )
-  |> Js.Nullable.fromOption;
+  );
 
 type pluralFormatOptionsRe = {. "style": option(pluralStyle)};
 
-type pluralFormatOptionsJs = {. "style": Js.nullable(string)};
+type pluralFormatOptionsJs = {. "style": option(string)};
 
 let mapReasonPluralFormatOptionsToJs = options => {
-  "style": options##style |> mapReasonPluralStyleToJs,
+  "style": options##style->mapReasonPluralStyleToJs,
 };
 
 /* Components */
@@ -365,9 +350,9 @@ type domTag =
   | Sub
   | Sup;
 
-type textComponent =
+type textComponent('props) =
   | DomTag(domTag)
-  | ReactComponent(ReasonReact.reactClass);
+  | ReactComponent(React.component('props));
 
 let mapDomTagToString = tag =>
   switch (tag) {
@@ -394,13 +379,13 @@ let mapDomTagToString = tag =>
 
 let mapOptDomTagToString = tag =>
   switch (tag) {
-  | Some(tag) => Some(tag |> mapDomTagToString)
+  | Some(tag) => Some(tag->mapDomTagToString)
   | None => None
   };
 
 let mapTextComponentToJs = textComponent =>
   switch (textComponent) {
-  | DomTag(domTag) => mapDomTagToString(domTag)->Obj.magic
+  | DomTag(domTag) => domTag->mapDomTagToString->Obj.magic
   | ReactComponent(reactComponent) => reactComponent->Obj.magic
   };
 
@@ -410,35 +395,66 @@ let mapOptTextComponentToJs = textComponent =>
 type errorHandler = string => unit;
 
 module IntlProvider = {
-  [@bs.module "react-intl"]
-  external reactClass: ReasonReact.reactClass = "IntlProvider";
-  let make =
+  type props('a, 'b) = {
+    .
+    "locale": option(string),
+    "formats": option(Js.t({..} as 'a)), /* TODO */
+    "messages": option(Js.Dict.t(string)),
+    "defaultLocale": option(string),
+    "defaultFormats": option(Js.t({..} as 'a)), /* TODO */
+    "textComponent": option(textComponent('b)),
+    "initialNow": option(int),
+    "onError": option(errorHandler),
+  };
+
+  [@bs.obj]
+  external makeProps:
+    (
+      ~locale: string=?,
+      ~formats: Js.t({..} as 'a)=?, /* TODO */
+      ~messages: Js.Dict.t(string)=?,
+      ~defaultLocale: string=?,
+      ~defaultFormats: Js.t({..} as 'a)=?, /* TODO */
+      ~textComponent: option(textComponent('b))=?,
+      ~initialNow: int=?,
+      ~onError: errorHandler=?,
+      ~children: React.element,
+      ~key: string=?,
+      unit
+    ) =>
+    props('a, 'b) =
+    "";
+
+  let makeProps =
       (
-        ~locale: option(string)=?,
-        ~formats: option(Js.t({..}))=?, /* TODO */
-        ~messages: option(Js.Dict.t(string))=?,
-        ~defaultLocale: option(string)=?,
-        ~defaultFormats: option(Js.t({..}))=?, /* TODO */
-        ~textComponent: option(textComponent)=?,
-        ~initialNow: option(int)=?,
-        ~onError: option(errorHandler)=?,
-        children,
+        ~locale=?,
+        ~formats=?,
+        ~messages=?,
+        ~defaultLocale=?,
+        ~defaultFormats=?,
+        ~textComponent=?,
+        ~initialNow=?,
+        ~onError=?,
+        ~children,
+        ~key=?,
+        (),
       ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "locale": locale |> Js.Nullable.fromOption,
-        "formats": formats |> Js.Nullable.fromOption,
-        "messages": messages |> Js.Nullable.fromOption,
-        "defaultLocale": defaultLocale |> Js.Nullable.fromOption,
-        "defaultFormats": defaultFormats |> Js.Nullable.fromOption,
-        "textComponent":
-          textComponent |> mapOptTextComponentToJs |> Js.Nullable.fromOption,
-        "initialNow": initialNow |> Js.Nullable.fromOption,
-        "onError": onError |> Js.Nullable.fromOption,
-      },
-      children,
+    makeProps(
+      ~locale?,
+      ~formats?,
+      ~messages?,
+      ~defaultLocale?,
+      ~defaultFormats?,
+      ~textComponent=?textComponent->mapOptTextComponentToJs,
+      ~initialNow?,
+      ~onError?,
+      ~children,
+      ~key?,
+      (),
     );
+
+  [@bs.module "react-intl"]
+  external make: React.component(props('a, 'b)) = "IntlProvider";
 };
 
 type intlJs('t) =
@@ -451,24 +467,24 @@ type intlJs('t) =
     "defaultFormats": Js.t({..}), /* TODO */
     "formatDate":
       [@bs.meth] (
-        (Js.Date.t, Js.nullable(dateTimeFormatOptionsJs)) => string
+        (Js.Date.t, Js.undefined(dateTimeFormatOptionsJs)) => string
       ),
     "formatTime":
       [@bs.meth] (
-        (Js.Date.t, Js.nullable(dateTimeFormatOptionsJs)) => string
+        (Js.Date.t, Js.undefined(dateTimeFormatOptionsJs)) => string
       ),
     "formatRelative":
       [@bs.meth] (
-        (Js.Date.t, Js.nullable(relativeFormatOptionsJs)) => string
+        (Js.Date.t, Js.undefined(relativeFormatOptionsJs)) => string
       ),
     "formatNumber":
-      [@bs.meth] ((float, Js.nullable(numberFormatOptionsJs)) => string),
+      [@bs.meth] ((float, Js.undefined(numberFormatOptionsJs)) => string),
     "formatPlural":
-      [@bs.meth] ((int, Js.nullable(pluralFormatOptionsJs)) => string),
+      [@bs.meth] ((int, Js.undefined(pluralFormatOptionsJs)) => string),
     "formatMessage":
-      [@bs.meth] ((message, Js.nullable(Js.t({..}))) => string),
+      [@bs.meth] ((message, Js.undefined(Js.t({..}))) => string),
     "formatHTMLMessage":
-      [@bs.meth] ((message, Js.nullable(Js.t({..}))) => string),
+      [@bs.meth] ((message, Js.undefined(Js.t({..}))) => string),
     "now": [@bs.meth] (unit => int),
   } as 't;
 
@@ -503,138 +519,158 @@ let mapIntlJsToReason = (intlJs: intlJs('t)): intl('a) => {
   messages: intlJs##messages,
   defaultLocale: intlJs##defaultLocale,
   defaultFormats: intlJs##defaultFormats,
-  formatDate: value =>
-    intlJs##formatDate(value, None |> Js.Nullable.fromOption),
+  formatDate: value => intlJs##formatDate(value, Js.undefined),
   formatDateWithOptions: (options, value) =>
     intlJs##formatDate(
       value,
-      Some(options |> mapReasonDateTimeFormatOptionsToJs)
-      |> Js.Nullable.fromOption,
+      Some(options->mapReasonDateTimeFormatOptionsToJs)
+      ->Js.Undefined.fromOption,
     ),
-  formatTime: value =>
-    intlJs##formatTime(value, None |> Js.Nullable.fromOption),
+  formatTime: value => intlJs##formatTime(value, Js.undefined),
   formatTimeWithOptions: (options, value) =>
     intlJs##formatTime(
       value,
-      Some(options |> mapReasonDateTimeFormatOptionsToJs)
-      |> Js.Nullable.fromOption,
+      Some(options->mapReasonDateTimeFormatOptionsToJs)
+      ->Js.Undefined.fromOption,
     ),
-  formatRelative: value =>
-    intlJs##formatRelative(value, None |> Js.Nullable.fromOption),
+  formatRelative: value => intlJs##formatRelative(value, Js.undefined),
   formatRelativeWithOptions: (options, value) =>
     intlJs##formatRelative(
       value,
-      Some(options |> mapReasonRelativeFormatOptionsToJs)
-      |> Js.Nullable.fromOption,
+      Some(options->mapReasonRelativeFormatOptionsToJs)
+      ->Js.Undefined.fromOption,
     ),
-  formatInt: value =>
-    intlJs##formatNumber(
-      value |> float_of_int,
-      None |> Js.Nullable.fromOption,
-    ),
+  formatInt: value => intlJs##formatNumber(value->float_of_int, Js.undefined),
   formatIntWithOptions: (options, value) =>
     intlJs##formatNumber(
-      value |> float_of_int,
-      Some(options |> mapReasonNumberFormatOptionsToJs)
-      |> Js.Nullable.fromOption,
+      value->float_of_int,
+      Some(options->mapReasonNumberFormatOptionsToJs)
+      ->Js.Undefined.fromOption,
     ),
-  formatFloat: value =>
-    intlJs##formatNumber(value, None |> Js.Nullable.fromOption),
+  formatFloat: value => intlJs##formatNumber(value, Js.undefined),
   formatFloatWithOptions: (options, value) =>
     intlJs##formatNumber(
       value,
-      Some(options |> mapReasonNumberFormatOptionsToJs)
-      |> Js.Nullable.fromOption,
+      Some(options->mapReasonNumberFormatOptionsToJs)
+      ->Js.Undefined.fromOption,
     ),
-  formatPlural: value =>
-    intlJs##formatPlural(value, None |> Js.Nullable.fromOption),
+  formatPlural: value => intlJs##formatPlural(value, Js.undefined),
   formatPluralWithOptions: (options, value) =>
     intlJs##formatPlural(
       value,
-      Some(options |> mapReasonPluralFormatOptionsToJs)
-      |> Js.Nullable.fromOption,
+      Some(options->mapReasonPluralFormatOptionsToJs)
+      ->Js.Undefined.fromOption,
     ),
-  formatMessage: message =>
-    intlJs##formatMessage(message, None |> Js.Nullable.fromOption),
+  formatMessage: message => intlJs##formatMessage(message, Js.undefined),
   formatMessageWithValues: (values, message) =>
-    intlJs##formatMessage(message, Some(values) |> Js.Nullable.fromOption),
+    intlJs##formatMessage(message, Some(values)->Js.Undefined.fromOption),
   formatHTMLMessage: message =>
-    intlJs##formatHTMLMessage(message, None |> Js.Nullable.fromOption),
+    intlJs##formatHTMLMessage(message, Js.undefined),
   formatHTMLMessageWithValues: (values, message) =>
     intlJs##formatHTMLMessage(
       message,
-      Some(values) |> Js.Nullable.fromOption,
+      Some(values)->Js.Undefined.fromOption,
     ),
   now: () => intlJs##now(),
 };
 
-module IntlInjector = {
-  let reactClass: ReasonReact.reactClass = [%bs.raw
-    {|
-    require("react-intl").injectIntl(function(_ref) {
-      var intl = _ref.intl, children = _ref.children;
-      return children(intl);
-    })
-    |}
-  ];
-  let make = children =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass, ~props=Js.Obj.empty(), (intlJs: intlJs('t)) =>
-      children(mapIntlJsToReason(intlJs))
-    );
-};
+[@bs.module "react-intl"] external useIntl: unit => intlJs('t) = "useIntl";
+let useIntl = () => useIntl()->mapIntlJsToReason;
 
 module FormattedMessage = {
-  [@bs.module "react-intl"]
-  external reactClass: ReasonReact.reactClass = "FormattedMessage";
-  let make =
-      (
-        ~id: string,
-        ~defaultMessage: string,
-        ~values: option(Js.t({..}))=?,
-        ~tagName: option(domTag)=?,
-        _,
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "id": id,
-        "defaultMessage": defaultMessage,
-        "values": values |> Js.Nullable.fromOption,
-        "tagName": tagName |> mapOptDomTagToString |> Js.Nullable.fromOption,
-      },
-      [||],
-    );
+  [@bs.module "react-intl"] [@react.component]
+  external make:
+    (
+      ~id: string,
+      ~defaultMessage: string,
+      ~values: Js.t({..}) as 'a=?,
+      ~tagName: [@bs.string] [
+                  | `span
+                  | `div
+                  | `p
+                  | `h1
+                  | `h2
+                  | `h3
+                  | `h4
+                  | `h5
+                  | `h6
+                  | `strong
+                  | `b
+                  | `i
+                  | `em
+                  | `mark
+                  | `small
+                  | `del
+                  | `ins
+                  | `sub
+                  | `sup
+                ]
+                  =?
+    ) =>
+    React.element =
+    "FormattedMessage";
 };
 
-/* DefinedMessage is another wrapper for FormattedMessage.
-   It takes the id and defaultMessage props from a passed message object. */
+// DefinedMessage is another wrapper for FormattedMessage.
+// It takes the id and defaultMessage props from a passed message object.
 module DefinedMessage = {
-  [@bs.module "react-intl"]
-  external reactClass: ReasonReact.reactClass = "FormattedMessage";
-  let make =
-      (
-        ~message: message,
-        ~values: option(Js.t({..}))=?,
-        ~tagName: option(domTag)=?,
-        _,
-      ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "id": message##id,
-        "defaultMessage": message##defaultMessage,
-        "values": values |> Js.Nullable.fromOption,
-        "tagName": tagName |> mapOptDomTagToString |> Js.Nullable.fromOption,
-      },
-      [||],
+  let make = FormattedMessage.make;
+  let makeProps = (~message: message, ~values=?, ~tagName=?, ~key=?, ()) =>
+    FormattedMessage.makeProps(
+      ~id=message##id,
+      ~defaultMessage=message##defaultMessage,
+      ~values?,
+      ~tagName?,
+      ~key?,
+      (),
     );
 };
 
 module FormattedDate = {
-  [@bs.module "react-intl"]
-  external reactClass: ReasonReact.reactClass = "FormattedDate";
-  let make =
+  type props = {
+    .
+    "value": Js.Date.t,
+    "format": option(string),
+    "localeMatcher": option(string),
+    "formatMatcher": option(string),
+    "timeZone": option(string),
+    "hour12": option(bool),
+    "weekday": option(string),
+    "era": option(string),
+    "year": option(string),
+    "month": option(string),
+    "day": option(string),
+    "hour": option(string),
+    "minute": option(string),
+    "second": option(string),
+    "timeZoneName": option(string),
+  };
+
+  [@bs.obj]
+  external makeProps:
+    (
+      ~value: Js.Date.t,
+      ~format: string=?,
+      ~localeMatcher: string=?,
+      ~formatMatcher: string=?,
+      ~timeZone: string=?,
+      ~hour12: bool=?,
+      ~weekday: string=?,
+      ~era: string=?,
+      ~year: string=?,
+      ~month: string=?,
+      ~day: string=?,
+      ~hour: string=?,
+      ~minute: string=?,
+      ~second: string=?,
+      ~timeZoneName: string=?,
+      ~key: string=?,
+      unit
+    ) =>
+    props =
+    "";
+
+  let makeProps =
       (
         ~value: Js.Date.t,
         ~format: option(string)=?,
@@ -651,35 +687,78 @@ module FormattedDate = {
         ~minute: option(numeralFormat)=?,
         ~second: option(numeralFormat)=?,
         ~timeZoneName: option(timeZoneName)=?,
-        _,
+        ~key=?,
+        (),
       ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "value": value,
-        "format": format |> Js.Nullable.fromOption,
-        "localeMatcher": localeMatcher |> mapReasonLocaleMatcherToJs,
-        "formatMatcher": formatMatcher |> mapReasonFormatMatcherToJs,
-        "timeZone": timeZone |> Js.Nullable.fromOption,
-        "hour12": hour12 |> Js.Nullable.fromOption,
-        "weekday": weekday |> mapReasonTextualFormatToJs,
-        "era": era |> mapReasonTextualFormatToJs,
-        "year": year |> mapReasonNumeralFormatToJs,
-        "month": month |> mapReasonMixedFormatToJs,
-        "day": day |> mapReasonNumeralFormatToJs,
-        "hour": hour |> mapReasonNumeralFormatToJs,
-        "minute": minute |> mapReasonNumeralFormatToJs,
-        "second": second |> mapReasonNumeralFormatToJs,
-        "timeZoneName": timeZoneName |> mapReasonTimeZoneNameToJs,
-      },
-      [||],
+    makeProps(
+      ~value,
+      ~format?,
+      ~localeMatcher=?localeMatcher->mapReasonLocaleMatcherToJs,
+      ~formatMatcher=?formatMatcher->mapReasonFormatMatcherToJs,
+      ~timeZone?,
+      ~hour12?,
+      ~weekday=?weekday->mapReasonTextualFormatToJs,
+      ~era=?era->mapReasonTextualFormatToJs,
+      ~year=?year->mapReasonNumeralFormatToJs,
+      ~month=?month->mapReasonMixedFormatToJs,
+      ~day=?day->mapReasonNumeralFormatToJs,
+      ~hour=?hour->mapReasonNumeralFormatToJs,
+      ~minute=?minute->mapReasonNumeralFormatToJs,
+      ~second=?second->mapReasonNumeralFormatToJs,
+      ~timeZoneName=?timeZoneName->mapReasonTimeZoneNameToJs,
+      ~key?,
+      (),
     );
+
+  [@bs.module "react-intl"]
+  external make: React.component(props) = "FormattedDate";
 };
 
 module FormattedTime = {
-  [@bs.module "react-intl"]
-  external reactClass: ReasonReact.reactClass = "FormattedTime";
-  let make =
+  type props = {
+    .
+    "value": Js.Date.t,
+    "format": option(string),
+    "localeMatcher": option(string),
+    "formatMatcher": option(string),
+    "timeZone": option(string),
+    "hour12": option(bool),
+    "weekday": option(string),
+    "era": option(string),
+    "year": option(string),
+    "month": option(string),
+    "day": option(string),
+    "hour": option(string),
+    "minute": option(string),
+    "second": option(string),
+    "timeZoneName": option(string),
+  };
+
+  [@bs.obj]
+  external makeProps:
+    (
+      ~value: Js.Date.t,
+      ~format: string=?,
+      ~localeMatcher: string=?,
+      ~formatMatcher: string=?,
+      ~timeZone: string=?,
+      ~hour12: bool=?,
+      ~weekday: string=?,
+      ~era: string=?,
+      ~year: string=?,
+      ~month: string=?,
+      ~day: string=?,
+      ~hour: string=?,
+      ~minute: string=?,
+      ~second: string=?,
+      ~timeZoneName: string=?,
+      ~key: string=?,
+      unit
+    ) =>
+    props =
+    "";
+
+  let makeProps =
       (
         ~value: Js.Date.t,
         ~format: option(string)=?,
@@ -696,53 +775,53 @@ module FormattedTime = {
         ~minute: option(numeralFormat)=?,
         ~second: option(numeralFormat)=?,
         ~timeZoneName: option(timeZoneName)=?,
-        _,
+        ~key=?,
+        (),
       ) =>
-    ReasonReact.wrapJsForReason(
-      ~reactClass,
-      ~props={
-        "value": value,
-        "format": format |> Js.Nullable.fromOption,
-        "localeMatcher": localeMatcher |> mapReasonLocaleMatcherToJs,
-        "formatMatcher": formatMatcher |> mapReasonFormatMatcherToJs,
-        "timeZone": timeZone |> Js.Nullable.fromOption,
-        "hour12": hour12 |> Js.Nullable.fromOption,
-        "weekday": weekday |> mapReasonTextualFormatToJs,
-        "era": era |> mapReasonTextualFormatToJs,
-        "year": year |> mapReasonNumeralFormatToJs,
-        "month": month |> mapReasonMixedFormatToJs,
-        "day": day |> mapReasonNumeralFormatToJs,
-        "hour": hour |> mapReasonNumeralFormatToJs,
-        "minute": minute |> mapReasonNumeralFormatToJs,
-        "second": second |> mapReasonNumeralFormatToJs,
-        "timeZoneName": timeZoneName |> mapReasonTimeZoneNameToJs,
-      },
-      [||],
+    makeProps(
+      ~value,
+      ~format?,
+      ~localeMatcher=?localeMatcher->mapReasonLocaleMatcherToJs,
+      ~formatMatcher=?formatMatcher->mapReasonFormatMatcherToJs,
+      ~timeZone?,
+      ~hour12?,
+      ~weekday=?weekday->mapReasonTextualFormatToJs,
+      ~era=?era->mapReasonTextualFormatToJs,
+      ~year=?year->mapReasonNumeralFormatToJs,
+      ~month=?month->mapReasonMixedFormatToJs,
+      ~day=?day->mapReasonNumeralFormatToJs,
+      ~hour=?hour->mapReasonNumeralFormatToJs,
+      ~minute=?minute->mapReasonNumeralFormatToJs,
+      ~second=?second->mapReasonNumeralFormatToJs,
+      ~timeZoneName=?timeZoneName->mapReasonTimeZoneNameToJs,
+      ~key?,
+      (),
     );
+
+  [@bs.module "react-intl"]
+  external make: React.component(props) = "FormattedDate";
 };
 
 /* Utils */
 let wrapUnicodeString = (input: string) => {j|$input|j};
 
 let wrapOptUnicodeString = (input: Js.nullable(string)) =>
-  switch (input |> Js.Nullable.toOption) {
-  | Some(input) => input |> wrapUnicodeString
+  switch (input->Js.Nullable.toOption) {
+  | Some(input) => input->wrapUnicodeString
   | None => ""
   };
 
 let messagesArrayToDict = (translation: jsonMessages) =>
-  translation
-  |> Array.fold_left(
-       (dict, message) => {
-         let unicodeMessage = message##message |> wrapOptUnicodeString;
-         let unicodeDefaultMessage =
-           message##defaultMessage |> wrapUnicodeString;
-         Js.Dict.set(
-           dict,
-           message##id,
-           unicodeMessage !== "" ? unicodeMessage : unicodeDefaultMessage,
-         );
-         dict;
-       },
-       Js.Dict.empty(),
-     );
+  translation->Belt.Array.reduce(
+    Js.Dict.empty(),
+    (dict, message) => {
+      let unicodeMessage = message##message->wrapOptUnicodeString;
+      let unicodeDefaultMessage = message##defaultMessage->wrapUnicodeString;
+      Js.Dict.set(
+        dict,
+        message##id,
+        unicodeMessage !== "" ? unicodeMessage : unicodeDefaultMessage,
+      );
+      dict;
+    },
+  );

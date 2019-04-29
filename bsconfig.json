@@ -10,12 +10,11 @@
   ],
   "bs-dependencies": ["reason-react"],
   "reason": {
-    "react-jsx": 2,
+    "react-jsx": 3,
   },
   "refmt": 3,
-  "bsc-flags": ["-bs-super-errors"],
   "package-specs": {
-    "module": "commonjs",
+    "module": "es6",
     "in-source": true,
   },
   "suffix": ".bs.js",
