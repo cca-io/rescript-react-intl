@@ -82,6 +82,13 @@ type message = {
   "defaultMessage": string,
 };
 
+type translation = {
+  .
+  "id": string,
+  "defaultMessage": string,
+  "message": Js.nullable(string),
+};
+
 module Intl = {
   type t;
 
@@ -124,9 +131,13 @@ module Intl = {
   [@bs.send] external now: (t, unit) => int = "";
 };
 
-type intl = Intl.t;
+[@bs.val] [@bs.module "react-intl"]
+external context: React.Context.t(Intl.t) = "IntlContext";
 
-[@bs.module "react-intl"] external useIntl: unit => intl = "";
+// Not in react-intl yet
+// [@bs.module "react-intl"] external useIntl: unit => intl = "";
+
+let useIntl = () => context->React.useContext; // not zero-cost but will be when react-intl will add it
 
 type textComponent;
 
