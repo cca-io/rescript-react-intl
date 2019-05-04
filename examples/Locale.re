@@ -1,5 +1,7 @@
-[@bs.module] external en: ReactIntl.jsonMessages = "./translations/en.json";
-[@bs.module] external ru: ReactIntl.jsonMessages = "./translations/ru.json";
+[@bs.module "./translations/en.json"]
+external en: array(ReactIntl.translation) = "default";
+[@bs.module "./translations/ru.json"]
+external ru: array(ReactIntl.translation) = "default";
 
 type locale =
   | En
@@ -12,7 +14,7 @@ let toString =
   | En => "en"
   | Ru => "ru";
 
-let toMessages =
+let translations =
   fun
   | En => en
   | Ru => ru;

@@ -1,7 +1,7 @@
-[@bs.module]
-external en: ReactIntl.localeData('t) = "react-intl/locale-data/en";
-[@bs.module]
-external ru: ReactIntl.localeData('t) = "react-intl/locale-data/ru";
+[@bs.module "react-intl/locale-data/en"]
+external en: ReactIntl.localeData('t) = "default";
+[@bs.module "react-intl/locale-data/ru"]
+external ru: ReactIntl.localeData('t) = "default";
 
 ReactIntl.addLocaleData(en);
 ReactIntl.addLocaleData(ru);

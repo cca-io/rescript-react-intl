@@ -14,7 +14,7 @@ let make = () => {
 
   <ReactIntl.IntlProvider
     locale={locale->Locale.toString}
-    messages={locale->Locale.toMessages->ReactIntl.messagesArrayToDict}>
+    messages={locale->Locale.translations->Util.translationsToDict}>
     <Page locale setLocale={locale => locale->SetLocale->dispatch} />
   </ReactIntl.IntlProvider>;
 };

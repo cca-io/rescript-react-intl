@@ -17,17 +17,17 @@ let make = (~locale, ~setLocale) => {
       </button>
     </div>
     <div className="message">
-      <ReactIntl.DefinedMessage message=pageLocale##hello />
+      <ReactIntl.FormattedMessage id="page.hello" defaultMessage="Hello" />
       " "->React.string
-      <ReactIntl.DefinedMessage message=pageLocale##world />
+      <ReactIntl.FormattedMessage id="page.world" defaultMessage="World" />
     </div>
     <div>
-      <ReactIntl.DefinedMessage message=pageLocale##today />
+      ReactIntl.(intl->Intl.formatMessage(pageLocale##today)->React.string)
       " "->React.string
-      {intl.formatDate(Js.Date.make())->React.string}
+      ReactIntl.(intl->Intl.formatDate(Js.Date.make())->React.string)
       " (intl.formatDate)"->React.string
       <br />
-      <ReactIntl.DefinedMessage message=pageLocale##today />
+      ReactIntl.(intl->Intl.formatMessage(pageLocale##today)->React.string)
       " "->React.string
       <ReactIntl.FormattedDate value={Js.Date.make()} />
       " (FormattedDate)"->React.string
