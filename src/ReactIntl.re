@@ -1,7 +1,3 @@
-type localeData('t) = {.. "locale": string} as 't;
-
-[@bs.module "react-intl"] external addLocaleData: localeData('t) => unit = "";
-
 type dateTimeFormatOptions;
 
 [@bs.obj]
@@ -134,10 +130,7 @@ module Intl = {
 [@bs.val] [@bs.module "react-intl"]
 external context: React.Context.t(Intl.t) = "IntlContext";
 
-// Not in react-intl yet
-// [@bs.module "react-intl"] external useIntl: unit => intl = "";
-
-let useIntl = () => context->React.useContext; // not zero-cost but will be when react-intl will add it
+[@bs.module "react-intl"] external useIntl: unit => Intl.t = "";
 
 type textComponent;
 
