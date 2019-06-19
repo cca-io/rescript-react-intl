@@ -1,6 +1,6 @@
 {
   "name": "bs-react-intl",
-  "version": "0.8.0",
+  "version": "0.9.0-beta.2",
   "description": "BuckleScript bindings to react-intl",
   "author": "Alex Fedoseev <alex.fedoseev@gmail.com>",
   "license": "MIT",
@@ -8,6 +8,7 @@
   "scripts": {
     "start": "parcel examples/index.html",
     "build": "bsb -clean-world -make-world",
+    "watch": "bsb -clean-world -make-world -w",
     "clean": "bsb -clean-world",
     "extract": "node examples/TranslationsExtractor.bs.js",
     "preextract": "yarn run build",
@@ -16,20 +17,20 @@
     "preversion": "yarn run clean"
   },
   "peerDependencies": {
-    "bs-platform": "^5.0.0",
-    "react-intl": "^2.7.1",
-    "reason-react": "^0.5.3"
+    "bs-platform": "^5.0.3",
+    "react-intl": "3.0.0-beta-8",
+    "reason-react": "^0.7.0"
   },
   "devDependencies": {
-    "bs-platform": "5.0.0",
+    "bs-platform": "5.0.3",
     "bs-react-intl-extractor-bin": "0.7.0",
     "bsb-js": "^1.1.7",
     "parcel-bundler": "1.12.3",
     "prop-types": "15.7.2",
     "react": "16.8.6",
     "react-dom": "16.8.6",
-    "react-intl": "2.8.0",
-    "reason-react": "0.6.0"
+    "react-intl": "3.0.0-beta-8",
+    "reason-react": "0.7.0"
   },
   "repository": {
     "type": "git",
