@@ -17,13 +17,14 @@ type jsonMessages = array(jsonMessage);
 /* addLocaleData */
 type localeData('t) = {.. "locale": string} as 't;
 
-[@bs.module "react-intl"] external addLocaleData: localeData('t) => unit = "";
+[@bs.module "react-intl"]
+external addLocaleData: localeData('t) => unit = "addLocaleData";
 
 /* defineMessages */
 type defineMessages('m) = (. 'm) => 'm;
 
 [@bs.module "react-intl"]
-external defineMessages: defineMessages(Js.t({..})) = "";
+external defineMessages: defineMessages(Js.t({..})) = "defineMessages";
 
 /* Formatters */
 type localeMatcher =

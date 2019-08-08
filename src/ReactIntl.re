@@ -88,49 +88,51 @@ type translation = {
 module Intl = {
   type t;
 
-  [@bs.get] external locale: t => string = "";
-  [@bs.get] external formats: t => Js.t({..}) = "";
-  [@bs.get] external messages: t => Js.Dict.t(string) = "";
-  [@bs.get] external defaultLocale: t => string = "";
-  [@bs.get] external defaultFormats: t => Js.t({..}) = "";
-  [@bs.send] external formatDate: (t, Js.Date.t) => string = "";
+  [@bs.get] external locale: t => string = "locale";
+  [@bs.get] external formats: t => Js.t({..}) = "formats";
+  [@bs.get] external messages: t => Js.Dict.t(string) = "messages";
+  [@bs.get] external defaultLocale: t => string = "defaultLocale";
+  [@bs.get] external defaultFormats: t => Js.t({..}) = "defaultFormats";
+  [@bs.send] external formatDate: (t, Js.Date.t) => string = "formatDate";
   [@bs.send]
   external formatDateWithOptions:
     (t, Js.Date.t, dateTimeFormatOptions) => string =
     "formatDate";
-  [@bs.send] external formatTime: (t, Js.Date.t) => string = "";
+  [@bs.send] external formatTime: (t, Js.Date.t) => string = "formatTime";
   [@bs.send]
   external formatTimeWithOptions:
     (t, Js.Date.t, dateTimeFormatOptions) => string =
     "formatTime";
-  [@bs.send] external formatRelative: (t, Js.Date.t) => string = "";
+  [@bs.send]
+  external formatRelative: (t, Js.Date.t) => string = "formatRelative";
   [@bs.send]
   external formatRelativeWithOptions:
     (t, Js.Date.t, relativeFormatOptions) => string =
     "formatRelative";
-  [@bs.send] external formatNumber: (t, float) => string = "";
+  [@bs.send] external formatNumber: (t, float) => string = "formatNumber";
   [@bs.send]
   external formatNumberWithOptions: (t, float, numberFormatOptions) => string =
     "formatNumber";
-  [@bs.send] external formatPlural: (t, int) => string = "";
+  [@bs.send] external formatPlural: (t, int) => string = "formatPlural";
   [@bs.send]
   external formatPluralWithOptions: (t, int, pluralFormatOptions) => string =
     "formatPlural";
-  [@bs.send] external formatMessage: (t, message) => string = "";
+  [@bs.send] external formatMessage: (t, message) => string = "formatMessage";
   [@bs.send]
   external formatMessageWithValues: (t, message, Js.t({..})) => string =
     "formatMessage";
-  [@bs.send] external formatHtmlMessage: (t, message) => string = "";
+  [@bs.send]
+  external formatHtmlMessage: (t, message) => string = "formatHtmlMessage";
   [@bs.send]
   external formatHtmlMessageWithValues: (t, message, Js.t({..})) => string =
     "formatHtmlMessage";
-  [@bs.send] external now: (t, unit) => int = "";
+  [@bs.send] external now: (t, unit) => int = "now";
 };
 
 [@bs.val] [@bs.module "react-intl"]
 external context: React.Context.t(Intl.t) = "IntlContext";
 
-[@bs.module "react-intl"] external useIntl: unit => Intl.t = "";
+[@bs.module "react-intl"] external useIntl: unit => Intl.t = "useIntl";
 
 type textComponent;
 
