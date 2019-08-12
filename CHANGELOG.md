@@ -1,3 +1,7 @@
+# 1.0.0
+* Updated for react-intl 3.0.0+, including support for the `useIntl` hook.
+* **[ BREAKING ]** This requires `reason-react >=0.7.0` and `bs-platform >=5.0.3`.
+
 # 0.8.0
 * **[ BREAKING ]** `bs-platform` updated to `5.0.0`.
 * **[ BREAKING ]** `reason-react` updated to `0.6.0`.
