@@ -4162,7 +4162,7 @@ process@^0.11.10:
   resolved "https://registry.yarnpkg.com/process/-/process-0.11.10.tgz#7332300e840161bda3e69a1d1d91a7d4bc16f182"
   integrity sha1-czIwDoQBYb2j5podHZGn1LwW8YI=
 
-prop-types@15.7.2, prop-types@^15.6.2:
+prop-types@^15.6.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -4282,10 +4282,10 @@ react-dom@16.8.6, react-dom@>=16.8.1:
     prop-types "^15.6.2"
     scheduler "^0.13.6"
 
-react-intl@3.1.5:
-  version "3.1.5"
-  resolved "https://registry.yarnpkg.com/react-intl/-/react-intl-3.1.5.tgz#36e5d23a15fd498cf73e2acd1735150ad96ba75d"
-  integrity sha512-o6DJeoUb3UwXAdi6JWPv75IOOJ8lemfQopD6D/oSVM1jscpHJb2BxtgHJ5Au936FekR7jv+w0EzJB4dLAPYG2A==
+react-intl@3.1.6:
+  version "3.1.6"
+  resolved "https://registry.yarnpkg.com/react-intl/-/react-intl-3.1.6.tgz#e41b9fba7bd26c9c83fdae81fb599ac3fdd1c819"
+  integrity sha512-SAqHT9ZI78kwvCaDT8jyCAaPxqheZhRI0vzisIXVGEzzxDXQbxG+2aWWUZvWEHnkCZNwLDr+uK2vLwgeXzLbbw==
   dependencies:
     "@formatjs/intl-relativetimeformat" "^2.6.2"
     "@types/hoist-non-react-statics" "^3.3.1"
