@@ -10,7 +10,7 @@
     "build": "bsb -clean-world -make-world",
     "watch": "bsb -clean-world -make-world -w",
     "clean": "bsb -clean-world",
-    "extract": "node examples/TranslationsExtractor.bs.js",
+    "extract": "node examples/extractor",
     "preextract": "yarn run build",
     "format": "bsrefmt --in-place **/*.re",
     "test": "exit 0",
