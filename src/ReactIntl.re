@@ -140,6 +140,38 @@ external domTag: string => textComponent = "%identity";
 external textComponent: React.component('props) => textComponent =
   "%identity";
 
+type intlCache;
+
+[@bs.module "react-intl"]
+external createIntlCache: unit => intlCache = "createIntlCache";
+
+type intlConfig;
+
+[@bs.obj]
+external intlConfig:
+  (
+    ~locale: string,
+    ~timeZone: string=?,
+    ~formats: Js.t({..})=?, /* TODO */
+    ~textComponent: textComponent=?,
+    ~messages: Js.Dict.t(string),
+    ~defaultLocale: string=?,
+    ~defaultFormats: Js.t({..})=?, /* TODO */
+    ~onError: string => unit=?,
+    unit
+  ) =>
+  intlConfig =
+  "";
+
+[@bs.module "react-intl"]
+external createIntl: (intlConfig, intlCache) => Intl.t = "createIntl";
+
+module RawIntlProvider = {
+  [@react.component] [@bs.module "react-intl"]
+  external make: (~value: Intl.t, ~children: React.element) => React.element =
+    "RawIntlProvider";
+};
+
 module IntlProvider = {
   [@react.component] [@bs.module "react-intl"]
   external make:
