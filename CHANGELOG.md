@@ -1,3 +1,6 @@
+# 1.1.0
+* Added `createIntlCache`, `intlConfig`, `createIntl`, `RawIntlProvider`.
+
 # 1.0.0
 * Updated for react-intl 3.0.0+, including support for the `useIntl` hook.
 * **[ BREAKING ]** This requires `reason-react >=0.7.0` and `bs-platform >=5.0.3`.
