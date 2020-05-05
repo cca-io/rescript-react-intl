@@ -121,11 +121,6 @@ module Intl = {
   [@bs.send]
   external formatMessageWithValues: (t, message, Js.t({..})) => string =
     "formatMessage";
-  [@bs.send]
-  external formatHtmlMessage: (t, message) => string = "formatHtmlMessage";
-  [@bs.send]
-  external formatHtmlMessageWithValues: (t, message, Js.t({..})) => string =
-    "formatHtmlMessage";
   [@bs.send] external now: (t, unit) => int = "now";
 };
 
@@ -202,20 +197,6 @@ module FormattedMessage = {
     ) =>
     React.element =
     "FormattedMessage";
-};
-
-module FormattedHTMLMessage = {
-  [@react.component] [@bs.module "react-intl"]
-  external make:
-    (
-      ~id: string,
-      ~defaultMessage: string,
-      ~values: Js.t({..})=?,
-      ~tagName: string=?,
-      ~children: (~formattedMessage: React.element) => React.element=?
-    ) =>
-    React.element =
-    "FormattedHTMLMessage";
 };
 
 module FormattedDate = {

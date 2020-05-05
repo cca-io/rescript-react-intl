@@ -1,6 +1,7 @@
 # 2.0.0
 * **[ BREAKING ]** `bs-platform >=7.2.2`.
 * **[ BREAKING ]** `react-intl >=4.0.0`:
+  - Removed `FormattedHTMLMessage`, `Intl.formatHTMLMessage` & `Intl.formatHtmlMessageWithValues`
 * **[ BREAKING ]** Removed `ReactIntlCompat`.
 
 # 1.1.0
