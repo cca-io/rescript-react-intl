@@ -102,6 +102,13 @@ type translation = {
   "message": Js.nullable(string),
 };
 
+module Part = {
+  type t;
+
+  [@bs.get] external type_: t => string = "type";
+  [@bs.get] external value: t => string = "value";
+};
+
 module Intl = {
   type t;
 
@@ -114,14 +121,28 @@ module Intl = {
   [@bs.get] external defaultFormats: t => Js.t({..}) = "defaultFormats";
   [@bs.send] external formatDate: (t, Js.Date.t) => string = "formatDate";
   [@bs.send]
+  external formatDateToParts: (t, Js.Date.t) => array(Part.t) =
+    "formatDateToParts";
+  [@bs.send]
   external formatDateWithOptions:
     (t, Js.Date.t, dateTimeFormatOptions) => string =
     "formatDate";
+  [@bs.send]
+  external formatDateWithOptionsToParts:
+    (t, Js.Date.t, dateTimeFormatOptions) => array(Part.t) =
+    "formatDateToParts";
   [@bs.send] external formatTime: (t, Js.Date.t) => string = "formatTime";
+  [@bs.send]
+  external formatTimeToParts: (t, Js.Date.t) => array(Part.t) =
+    "formatTimeToParts";
   [@bs.send]
   external formatTimeWithOptions:
     (t, Js.Date.t, dateTimeFormatOptions) => string =
     "formatTime";
+  [@bs.send]
+  external formatTimeWithOptionsToParts:
+    (t, Js.Date.t, dateTimeFormatOptions) => array(Part.t) =
+    "formatTimeToParts";
   [@bs.send]
   external formatRelativeTime: (t, float) => string = "formatRelativeTime";
   [@bs.send]
@@ -163,8 +184,15 @@ module Intl = {
     "formatRelativeTime";
   [@bs.send] external formatNumber: (t, float) => string = "formatNumber";
   [@bs.send]
+  external formatNumberToParts: (t, float) => array(Part.t) =
+    "formatNumberToParts";
+  [@bs.send]
   external formatNumberWithOptions: (t, float, numberFormatOptions) => string =
     "formatNumber";
+  [@bs.send]
+  external formatNumberWithOptionsToParts:
+    (t, float, numberFormatOptions) => array(Part.t) =
+    "formatNumberToParts";
   [@bs.send] external formatPlural: (t, int) => string = "formatPlural";
   [@bs.send]
   external formatPluralWithOptions: (t, int, pluralFormatOptions) => string =
@@ -293,6 +321,39 @@ module FormattedDate = {
     "FormattedDate";
 };
 
+module FormattedDateParts = {
+  [@react.component] [@bs.module "react-intl"]
+  external make:
+    (
+      ~value: Js.Date.t,
+      ~localeMatcher: [@bs.string] [ | [@bs.as "best fit"] `bestFit | `lookup]
+                        =?,
+      ~formatMatcher: [@bs.string] [ | [@bs.as "best fit"] `bestFit | `basic]=?,
+      ~timeZone: string=?,
+      ~hour12: bool=?,
+      ~weekday: [@bs.string] [ | `narrow | `short | `long]=?,
+      ~era: [@bs.string] [ | `narrow | `short | `long]=?,
+      ~year: [@bs.string] [ | `numeric | [@bs.as "2-digit"] `twoDigit]=?,
+      ~month: [@bs.string] [
+                | `numeric
+                | [@bs.as "2-digit"] `twoDigit
+                | `narrow
+                | `short
+                | `long
+              ]
+                =?,
+      ~day: [@bs.string] [ | `numeric | [@bs.as "2-digit"] `twoDigit]=?,
+      ~hour: [@bs.string] [ | `numeric | [@bs.as "2-digit"] `twoDigit]=?,
+      ~minute: [@bs.string] [ | `numeric | [@bs.as "2-digit"] `twoDigit]=?,
+      ~second: [@bs.string] [ | `numeric | [@bs.as "2-digit"] `twoDigit]=?,
+      ~timeZoneName: [@bs.string] [ | `short | `long]=?,
+      ~format: string=?,
+      ~children: (~formattedDateParts: array(Part.t)) => React.element
+    ) =>
+    React.element =
+    "FormattedDateParts";
+};
+
 module FormattedTime = {
   [@react.component] [@bs.module "react-intl"]
   external make:
@@ -320,10 +381,43 @@ module FormattedTime = {
       ~second: [@bs.string] [ | `numeric | [@bs.as "2-digit"] `twoDigit]=?,
       ~timeZoneName: [@bs.string] [ | `short | `long]=?,
       ~format: string=?,
-      ~children: (~formattedDate: string) => React.element=?
+      ~children: (~formattedTime: string) => React.element=?
     ) =>
     React.element =
     "FormattedTime";
+};
+
+module FormattedTimeParts = {
+  [@react.component] [@bs.module "react-intl"]
+  external make:
+    (
+      ~value: Js.Date.t,
+      ~localeMatcher: [@bs.string] [ | [@bs.as "best fit"] `bestFit | `lookup]
+                        =?,
+      ~formatMatcher: [@bs.string] [ | [@bs.as "best fit"] `bestFit | `basic]=?,
+      ~timeZone: string=?,
+      ~hour12: bool=?,
+      ~weekday: [@bs.string] [ | `narrow | `short | `long]=?,
+      ~era: [@bs.string] [ | `narrow | `short | `long]=?,
+      ~year: [@bs.string] [ | `numeric | [@bs.as "2-digit"] `twoDigit]=?,
+      ~month: [@bs.string] [
+                | `numeric
+                | [@bs.as "2-digit"] `twoDigit
+                | `narrow
+                | `short
+                | `long
+              ]
+                =?,
+      ~day: [@bs.string] [ | `numeric | [@bs.as "2-digit"] `twoDigit]=?,
+      ~hour: [@bs.string] [ | `numeric | [@bs.as "2-digit"] `twoDigit]=?,
+      ~minute: [@bs.string] [ | `numeric | [@bs.as "2-digit"] `twoDigit]=?,
+      ~second: [@bs.string] [ | `numeric | [@bs.as "2-digit"] `twoDigit]=?,
+      ~timeZoneName: [@bs.string] [ | `short | `long]=?,
+      ~format: string=?,
+      ~children: (~formattedTimeParts: array(Part.t)) => React.element
+    ) =>
+    React.element =
+    "FormattedTimeParts";
 };
 
 module FormattedRelativeTime = {
@@ -373,6 +467,29 @@ module FormattedNumber = {
     ) =>
     React.element =
     "FormattedNumber";
+};
+
+module FormattedNumberParts = {
+  [@react.component] [@bs.module "react-intl"]
+  external make:
+    (
+      ~value: float,
+      ~localeMatcher: [@bs.string] [ | [@bs.as "best fit"] `bestFit | `lookup]
+                        =?,
+      ~style: [@bs.string] [ | `decimal | `currency | `percent]=?,
+      ~currency: string=?,
+      ~currencyDisplay: [@bs.string] [ | `symbol | `code | `name]=?,
+      ~useGrouping: bool=?,
+      ~minimumIntegerDigits: int=?,
+      ~minimumFractionDigits: int=?,
+      ~maximumFractionDigits: int=?,
+      ~minimumSignificantDigits: int=?,
+      ~maximumSignificantDigits: int=?,
+      ~format: string=?,
+      ~children: (~formattedNumberParts: array(Part.t)) => React.element
+    ) =>
+    React.element =
+    "FormattedNumberParts";
 };
 
 module FormattedPlural = {

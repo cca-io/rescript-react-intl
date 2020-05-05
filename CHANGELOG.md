@@ -4,6 +4,9 @@
   - Added `Intl.timeZone`
   - Added `FormattedList`, `Intl.formatList` & `Intl.formatListWithOptions`
   - Added `FormattedDisplayName`, `Intl.formatDisplayName` & `Intl.formatDisplayNameWithOptions`
+  - Added `FormattedDateParts`, `Intl.formatDateToParts` & `Intl.formatDateToPartsWithOptions`
+  - Added `FormattedTimeParts`, `Intl.formatTimeToParts` & `Intl.formatTimeToPartsWithOptions`
+  - Added `FormattedNumberParts`, `Intl.formatNumberToParts` & `Intl.formatNumberToPartsWithOptions`
   - Removed `FormattedHTMLMessage`, `Intl.formatHTMLMessage` & `Intl.formatHtmlMessageWithValues`
   - Removed `Intl.now`
   - `FormattedRelative` has been renamed to `FormattedRelativeTime` and its API has been changed as well
