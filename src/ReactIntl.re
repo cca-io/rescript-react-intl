@@ -94,6 +94,8 @@ module Intl = {
   type t;
 
   [@bs.get] external locale: t => string = "locale";
+  [@bs.get] [@bs.return nullable]
+  external timeZone: t => option(string) = "timeZone";
   [@bs.get] external formats: t => Js.t({..}) = "formats";
   [@bs.get] external messages: t => Js.Dict.t(string) = "messages";
   [@bs.get] external defaultLocale: t => string = "defaultLocale";
