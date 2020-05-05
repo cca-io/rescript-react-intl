@@ -26,8 +26,7 @@ external dateTimeFormatOptions:
     ~format: string=?,
     unit
   ) =>
-  dateTimeFormatOptions =
-  "";
+  dateTimeFormatOptions;
 
 type relativeTimeFormatOptions;
 
@@ -58,16 +57,14 @@ external numberFormatOptions:
     ~maximumSignificantDigits: int=?,
     unit
   ) =>
-  numberFormatOptions =
-  "";
+  numberFormatOptions;
 
 type pluralFormatOptions;
 
 [@bs.obj]
 external pluralFormatOptions:
   (~style: [@bs.string] [ | `cardinal | `ordinal]=?, unit) =>
-  pluralFormatOptions =
-  "";
+  pluralFormatOptions;
 
 type message = {
   .
@@ -185,8 +182,7 @@ external intlConfig:
     ~onError: string => unit=?,
     unit
   ) =>
-  intlConfig =
-  "";
+  intlConfig;
 
 [@bs.module "react-intl"]
 external createIntl: (intlConfig, intlCache) => Intl.t = "createIntl";
