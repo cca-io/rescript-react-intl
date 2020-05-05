@@ -66,6 +66,17 @@ external pluralFormatOptions:
   (~style: [@bs.string] [ | `cardinal | `ordinal]=?, unit) =>
   pluralFormatOptions;
 
+type listFormatOptions;
+
+[@bs.obj]
+external listFormatOptions:
+  (
+    ~style: [@bs.string] [ | `long | `short | `narrow]=?,
+    ~_type: [@bs.string] [ | `disjunction | `conjunction | `unit]=?,
+    unit
+  ) =>
+  listFormatOptions;
+
 type message = {
   .
   "id": string,
@@ -148,6 +159,11 @@ module Intl = {
   [@bs.send]
   external formatMessageWithValues: (t, message, Js.t({..})) => string =
     "formatMessage";
+  [@bs.send] external formatList: (t, array(string)) => string = "formatList";
+  [@bs.send]
+  external formatListWithOptions:
+    (t, array(string), listFormatOptions) => string =
+    "formatList";
   [@bs.send] external now: (t, unit) => int = "now";
 };
 
@@ -356,4 +372,17 @@ module FormattedPlural = {
     ) =>
     React.element =
     "FormattedPlural";
+};
+
+module FormattedList = {
+  [@react.component] [@bs.module "react-intl"]
+  external make:
+    (
+      ~value: array(string),
+      ~style: [@bs.string] [ | `long | `short | `narrow]=?,
+      ~_type: [@bs.string] [ | `disjunction | `conjunction | `unit]=?,
+      ~children: (~formattedList: string) => React.element=?
+    ) =>
+    React.element =
+    "FormattedList";
 };
