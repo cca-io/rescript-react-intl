@@ -2,6 +2,8 @@
 * **[ BREAKING ]** `bs-platform >=7.2.2`.
 * **[ BREAKING ]** `react-intl >=4.0.0`:
   - Removed `FormattedHTMLMessage`, `Intl.formatHTMLMessage` & `Intl.formatHtmlMessageWithValues`
+  - `FormattedRelative` has been renamed to `FormattedRelativeTime` and its API has been changed as well
+  - `Intl.formatRelative` has been renamed to `Intl.formatRelativeTime` and its API has been changed as well
 * **[ BREAKING ]** Removed `ReactIntlCompat`.
 
 # 1.1.0

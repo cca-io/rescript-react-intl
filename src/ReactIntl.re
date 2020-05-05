@@ -29,20 +29,17 @@ external dateTimeFormatOptions:
   dateTimeFormatOptions =
   "";
 
-type relativeFormatOptions;
+type relativeTimeFormatOptions;
 
 [@bs.obj]
-external relativeFormatOptions:
+external relativeTimeFormatOptions:
   (
-    ~style: [@bs.string] [ | [@bs.as "best fit"] `bestFit | `numeric]=?,
-    ~units: [@bs.string] [ | `second | `minute | `hour | `day | `month | `year]
-              =?,
+    ~numeric: [@bs.string] [ | `always | `auto]=?,
+    ~style: [@bs.string] [ | `long | `short | `narrow]=?,
     ~format: string=?,
-    ~now: int=?,
     unit
   ) =>
-  relativeFormatOptions =
-  "";
+  relativeTimeFormatOptions;
 
 type numberFormatOptions;
 
@@ -104,11 +101,44 @@ module Intl = {
     (t, Js.Date.t, dateTimeFormatOptions) => string =
     "formatTime";
   [@bs.send]
-  external formatRelative: (t, Js.Date.t) => string = "formatRelative";
+  external formatRelativeTime: (t, float) => string = "formatRelativeTime";
   [@bs.send]
-  external formatRelativeWithOptions:
-    (t, Js.Date.t, relativeFormatOptions) => string =
-    "formatRelative";
+  external formatRelativeTimeWithUnit:
+    (
+      t,
+      float,
+      [@bs.string] [
+        | `second
+        | `minute
+        | `hour
+        | `day
+        | `week
+        | `month
+        | `quarter
+        | `year
+      ]
+    ) =>
+    string =
+    "formatRelativeTime";
+  [@bs.send]
+  external formatRelativeTimeWithUnitAndOptions:
+    (
+      t,
+      float,
+      [@bs.string] [
+        | `second
+        | `minute
+        | `hour
+        | `day
+        | `week
+        | `month
+        | `quarter
+        | `year
+      ],
+      relativeTimeFormatOptions
+    ) =>
+    string =
+    "formatRelativeTime";
   [@bs.send] external formatNumber: (t, float) => string = "formatNumber";
   [@bs.send]
   external formatNumberWithOptions: (t, float, numberFormatOptions) => string =
@@ -265,28 +295,30 @@ module FormattedTime = {
     "FormattedTime";
 };
 
-module FormattedRelative = {
+module FormattedRelativeTime = {
   [@react.component] [@bs.module "react-intl"]
   external make:
     (
-      ~value: Js.Date.t,
-      ~style: [@bs.string] [ | [@bs.as "best fit"] `bestFit | `numeric]=?,
-      ~units: [@bs.string] [
-                | `second
-                | `minute
-                | `hour
-                | `day
-                | `month
-                | `year
-              ]
-                =?,
+      ~value: float,
+      ~unit: [@bs.string] [
+               | `second
+               | `minute
+               | `hour
+               | `day
+               | `week
+               | `month
+               | `quarter
+               | `year
+             ]
+               =?,
+      ~numeric: [@bs.string] [ | `always | `auto]=?,
+      ~style: [@bs.string] [ | `long | `short | `narrow]=?,
       ~format: string=?,
-      ~updateInterval: float=?,
-      ~initialNow: int=?,
+      ~updateIntervalInSeconds: float=?,
       ~children: (~formattedDate: string) => React.element=?
     ) =>
     React.element =
-    "FormattedRelative";
+    "FormattedRelativeTime";
 };
 
 module FormattedNumber = {
