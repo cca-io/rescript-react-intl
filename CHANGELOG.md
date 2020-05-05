@@ -1,3 +1,7 @@
+# 2.0.0
+* **[ BREAKING ]** `bs-platform >=7.2.2`.
+* **[ BREAKING ]** `react-intl >=4.0.0`:
+
 # 1.1.0
 * Added `createIntlCache`, `intlConfig`, `createIntl`, `RawIntlProvider`.
 
