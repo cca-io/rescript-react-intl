@@ -166,7 +166,6 @@ module Intl = {
   external formatListWithOptions:
     (t, array(string), listFormatOptions) => string =
     "formatList";
-  [@bs.send] external now: (t, unit) => int = "now";
 };
 
 [@bs.val] [@bs.module "react-intl"]
