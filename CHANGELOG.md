@@ -3,6 +3,7 @@
 * **[ BREAKING ]** `react-intl >=4.0.0`:
   - Added `Intl.timeZone`
   - Added `FormattedList`, `Intl.formatList` & `Intl.formatListWithOptions`
+  - Added `FormattedDisplayName`, `Intl.formatDisplayName` & `Intl.formatDisplayNameWithOptions`
   - Removed `FormattedHTMLMessage`, `Intl.formatHTMLMessage` & `Intl.formatHtmlMessageWithValues`
   - Removed `Intl.now`
   - `FormattedRelative` has been renamed to `FormattedRelativeTime` and its API has been changed as well

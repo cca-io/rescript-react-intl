@@ -77,6 +77,18 @@ external listFormatOptions:
   ) =>
   listFormatOptions;
 
+type displayNameFormatOptions;
+
+[@bs.obj]
+external displayNameFormatOptions:
+  (
+    ~style: [@bs.string] [ | `long | `short | `narrow]=?,
+    ~_type: [@bs.string] [ | `language | `region | `script | `currency]=?,
+    ~fallback: [@bs.string] [ | `code | `none]=?,
+    unit
+  ) =>
+  displayNameFormatOptions;
+
 type message = {
   .
   "id": string,
@@ -166,6 +178,12 @@ module Intl = {
   external formatListWithOptions:
     (t, array(string), listFormatOptions) => string =
     "formatList";
+  [@bs.send]
+  external formatDisplayName: (t, string) => string = "formatDisplayName";
+  [@bs.send]
+  external formatDisplayNameWithOptions:
+    (t, string, displayNameFormatOptions) => string =
+    "formatDisplayName";
 };
 
 [@bs.val] [@bs.module "react-intl"]
@@ -386,4 +404,17 @@ module FormattedList = {
     ) =>
     React.element =
     "FormattedList";
+};
+
+module FormattedDisplayName = {
+  [@react.component] [@bs.module "react-intl"]
+  external make:
+    (
+      ~value: string,
+      ~style: [@bs.string] [ | `long | `short | `narrow]=?,
+      ~_type: [@bs.string] [ | `language | `region | `script | `currency]=?,
+      ~fallback: [@bs.string] [ | `code | `none]=?
+    ) =>
+    React.element =
+    "FormattedDisplayName";
 };
