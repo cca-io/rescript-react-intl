@@ -102,11 +102,10 @@ type translation = {
   "message": Js.nullable(string),
 };
 
-module Part = {
-  type t;
-
-  [@bs.get] external type_: t => string = "type";
-  [@bs.get] external value: t => string = "value";
+type part = {
+  [@bs.as "type"]
+  type_: string,
+  value: string,
 };
 
 module Intl = {
@@ -121,7 +120,7 @@ module Intl = {
   [@bs.get] external defaultFormats: t => Js.t({..}) = "defaultFormats";
   [@bs.send] external formatDate: (t, Js.Date.t) => string = "formatDate";
   [@bs.send]
-  external formatDateToParts: (t, Js.Date.t) => array(Part.t) =
+  external formatDateToParts: (t, Js.Date.t) => array(part) =
     "formatDateToParts";
   [@bs.send]
   external formatDateWithOptions:
@@ -129,11 +128,11 @@ module Intl = {
     "formatDate";
   [@bs.send]
   external formatDateWithOptionsToParts:
-    (t, Js.Date.t, dateTimeFormatOptions) => array(Part.t) =
+    (t, Js.Date.t, dateTimeFormatOptions) => array(part) =
     "formatDateToParts";
   [@bs.send] external formatTime: (t, Js.Date.t) => string = "formatTime";
   [@bs.send]
-  external formatTimeToParts: (t, Js.Date.t) => array(Part.t) =
+  external formatTimeToParts: (t, Js.Date.t) => array(part) =
     "formatTimeToParts";
   [@bs.send]
   external formatTimeWithOptions:
@@ -141,7 +140,7 @@ module Intl = {
     "formatTime";
   [@bs.send]
   external formatTimeWithOptionsToParts:
-    (t, Js.Date.t, dateTimeFormatOptions) => array(Part.t) =
+    (t, Js.Date.t, dateTimeFormatOptions) => array(part) =
     "formatTimeToParts";
   [@bs.send]
   external formatRelativeTime: (t, float) => string = "formatRelativeTime";
@@ -184,14 +183,14 @@ module Intl = {
     "formatRelativeTime";
   [@bs.send] external formatNumber: (t, float) => string = "formatNumber";
   [@bs.send]
-  external formatNumberToParts: (t, float) => array(Part.t) =
+  external formatNumberToParts: (t, float) => array(part) =
     "formatNumberToParts";
   [@bs.send]
   external formatNumberWithOptions: (t, float, numberFormatOptions) => string =
     "formatNumber";
   [@bs.send]
   external formatNumberWithOptionsToParts:
-    (t, float, numberFormatOptions) => array(Part.t) =
+    (t, float, numberFormatOptions) => array(part) =
     "formatNumberToParts";
   [@bs.send] external formatPlural: (t, int) => string = "formatPlural";
   [@bs.send]
@@ -348,7 +347,7 @@ module FormattedDateParts = {
       ~second: [@bs.string] [ | `numeric | [@bs.as "2-digit"] `twoDigit]=?,
       ~timeZoneName: [@bs.string] [ | `short | `long]=?,
       ~format: string=?,
-      ~children: (~formattedDateParts: array(Part.t)) => React.element
+      ~children: (~formattedDateParts: array(part)) => React.element
     ) =>
     React.element =
     "FormattedDateParts";
@@ -414,7 +413,7 @@ module FormattedTimeParts = {
       ~second: [@bs.string] [ | `numeric | [@bs.as "2-digit"] `twoDigit]=?,
       ~timeZoneName: [@bs.string] [ | `short | `long]=?,
       ~format: string=?,
-      ~children: (~formattedTimeParts: array(Part.t)) => React.element
+      ~children: (~formattedTimeParts: array(part)) => React.element
     ) =>
     React.element =
     "FormattedTimeParts";
@@ -486,7 +485,7 @@ module FormattedNumberParts = {
       ~minimumSignificantDigits: int=?,
       ~maximumSignificantDigits: int=?,
       ~format: string=?,
-      ~children: (~formattedNumberParts: array(Part.t)) => React.element
+      ~children: (~formattedNumberParts: array(part)) => React.element
     ) =>
     React.element =
     "FormattedNumberParts";
