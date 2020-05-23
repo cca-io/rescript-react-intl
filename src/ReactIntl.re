@@ -90,16 +90,8 @@ external displayNameFormatOptions:
   displayNameFormatOptions;
 
 type message = {
-  .
-  "id": string,
-  "defaultMessage": string,
-};
-
-type translation = {
-  .
-  "id": string,
-  "defaultMessage": string,
-  "message": Js.nullable(string),
+  id: string,
+  defaultMessage: string,
 };
 
 type part = {
