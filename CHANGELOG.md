@@ -1,3 +1,18 @@
+# 2.0.0
+* **[ BREAKING ]** `bs-platform >=7.2.2`.
+* **[ BREAKING ]** `react-intl >=4.0.0`:
+  - Added `Intl.timeZone`
+  - Added `FormattedList`, `Intl.formatList` & `Intl.formatListWithOptions`
+  - Added `FormattedDisplayName`, `Intl.formatDisplayName` & `Intl.formatDisplayNameWithOptions`
+  - Added `FormattedDateParts`, `Intl.formatDateToParts` & `Intl.formatDateToPartsWithOptions`
+  - Added `FormattedTimeParts`, `Intl.formatTimeToParts` & `Intl.formatTimeToPartsWithOptions`
+  - Added `FormattedNumberParts`, `Intl.formatNumberToParts` & `Intl.formatNumberToPartsWithOptions`
+  - Removed `FormattedHTMLMessage`, `Intl.formatHTMLMessage` & `Intl.formatHtmlMessageWithValues`
+  - Removed `Intl.now`
+  - `FormattedRelative` has been renamed to `FormattedRelativeTime` and its API has been changed as well
+  - `Intl.formatRelative` has been renamed to `Intl.formatRelativeTime` and its API has been changed as well
+* **[ BREAKING ]** Removed `ReactIntlCompat`.
+
 # 1.1.0
 * Added `createIntlCache`, `intlConfig`, `createIntl`, `RawIntlProvider`.
 

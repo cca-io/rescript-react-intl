@@ -5,6 +5,11 @@
     "message": "Привет"
   },
   {
+    "id": "page.html",
+    "defaultMessage": "HTML example: <bold>bold text</bold>, <combined><italic>italic bold</italic> text</combined>",
+    "message": "Пример HTML: <bold>полужирный текст</bold>, <combined><italic>полужирный курсивный</italic> текст</combined>"
+  },
+  {
     "id": "page.today",
     "defaultMessage": "Today is",
     "message": "Сегодня"

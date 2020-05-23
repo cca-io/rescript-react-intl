@@ -5,6 +5,11 @@
     "message": ""
   },
   {
+    "id": "page.html",
+    "defaultMessage": "HTML example: <bold>bold text</bold>, <combined><italic>italic bold</italic> text</combined>",
+    "message": ""
+  },
+  {
     "id": "page.today",
     "defaultMessage": "Today is",
     "message": ""

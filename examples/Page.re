@@ -33,5 +33,17 @@ let make = (~locale, ~setLocale) => {
       <FormattedDate value={Js.Date.make()} />
       " (FormattedDate)"->React.string
     </div>
+    <div>
+      <FormattedMessage
+        id="page.html"
+        defaultMessage="HTML example: <bold>bold text</bold>, <combined><italic>italic bold</italic> text</combined>"
+        values={
+          "bold": text => <strong> text </strong>,
+          "italic": text => <em> text </em>,
+          "combined": (italicBold, text) =>
+            <strong> italicBold text </strong>,
+        }
+      />
+    </div>
   </div>;
 };
