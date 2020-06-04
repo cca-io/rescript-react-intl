@@ -1,10 +1,10 @@
-type translation = {
+type t = {
   id: string,
   defaultMessage: string,
   message: Js.nullable(string),
 };
 
-let translationsToDict = (translations: array(translation)) => {
+let toDict = (translations: array(t)) => {
   translations->Belt.Array.reduce(
     Js.Dict.empty(),
     (dict, entry) => {

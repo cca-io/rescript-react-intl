@@ -17,7 +17,7 @@ module WithRawIntlProvider = {
     let intlConfig =
       ReactIntl.intlConfig(
         ~locale=locale->Locale.toString,
-        ~messages=locale->Locale.translations->Util.translationsToDict,
+        ~messages=locale->Locale.translations->Translation.toDict,
         (),
       );
     let intlCache = ReactIntl.createIntlCache();
@@ -44,7 +44,7 @@ let make = () => {
 
   <ReactIntl.IntlProvider
     locale={locale->Locale.toString}
-    messages={locale->Locale.translations->Util.translationsToDict}>
+    messages={locale->Locale.translations->Translation.toDict}>
     <Page locale setLocale={locale => locale->SetLocale->dispatch} />
   </ReactIntl.IntlProvider>;
 };
