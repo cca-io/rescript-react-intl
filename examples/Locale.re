@@ -1,7 +1,7 @@
 [@bs.module "./translations/en.json"]
-external en: array(ReactIntl.translation) = "default";
+external en: array(Translation.t) = "default";
 [@bs.module "./translations/ru.json"]
-external ru: array(ReactIntl.translation) = "default";
+external ru: array(Translation.t) = "default";
 
 type locale =
   | En

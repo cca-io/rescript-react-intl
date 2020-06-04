@@ -11,6 +11,8 @@
   - Removed `Intl.now`
   - `FormattedRelative` has been renamed to `FormattedRelativeTime` and its API has been changed as well
   - `Intl.formatRelative` has been renamed to `Intl.formatRelativeTime` and its API has been changed as well
+* **[ BREAKING ]** Changed `ReactIntl.message` to record type.
+* **[ BREAKING ]** Removed `ReactIntl.translation`.
 * **[ BREAKING ]** Removed `ReactIntlCompat`.
 
 # 1.1.0

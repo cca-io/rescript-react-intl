@@ -1,5 +1,4 @@
 open ReactIntl;
-open PageLocale;
 
 [@react.component]
 let make = (~locale, ~setLocale) => {
@@ -23,12 +22,12 @@ let make = (~locale, ~setLocale) => {
       <FormattedMessage id="page.world" defaultMessage="World" />
     </div>
     <div>
-      {intl->Intl.formatMessage(pageLocale##today)->React.string}
+      {intl->Intl.formatMessage(PageLocale.today)->React.string}
       " "->React.string
       {intl->Intl.formatDate(Js.Date.make())->React.string}
       " (intl.formatDate)"->React.string
       <br />
-      {intl->Intl.formatMessage(pageLocale##today)->React.string}
+      {intl->Intl.formatMessage(PageLocale.today)->React.string}
       " "->React.string
       <FormattedDate value={Js.Date.make()} />
       " (FormattedDate)"->React.string

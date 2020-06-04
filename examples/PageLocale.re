@@ -1,16 +1,6 @@
-let pageLocale =
-  [@intl.messages]
-  {
-    "hello": {
-      "id": "page.hello",
-      "defaultMessage": "Hello",
-    },
-    "world": {
-      "id": "page.world",
-      "defaultMessage": "World",
-    },
-    "today": {
-      "id": "page.today",
-      "defaultMessage": "Today is",
-    },
-  };
+open ReactIntl;
+[@intl.messages];
+
+let hello = {id: "page.hello", defaultMessage: "Hello"};
+let world = {id: "page.world", defaultMessage: "World"};
+let today = {id: "page.today", defaultMessage: "Today is"};
