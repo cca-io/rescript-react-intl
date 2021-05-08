@@ -30,8 +30,8 @@ type relativeTimeFormatOptions
 
 @obj
 external relativeTimeFormatOptions: (
-  ~numeric: @string [#always | #auto]=?,
-  ~style: @string [#long | #short | #narrow]=?,
+  ~numeric: [#always | #auto]=?,
+  ~style: [#long | #short | #narrow]=?,
   ~format: string=?,
   unit,
 ) => relativeTimeFormatOptions = ""
@@ -56,17 +56,14 @@ external numberFormatOptions: (
 type pluralFormatOptions
 
 @obj
-external pluralFormatOptions: (
-  ~style: @string [#cardinal | #ordinal]=?,
-  unit,
-) => pluralFormatOptions = ""
+external pluralFormatOptions: (~style: [#cardinal | #ordinal]=?, unit) => pluralFormatOptions = ""
 
 type listFormatOptions
 
 @obj
 external listFormatOptions: (
-  ~style: @string [#long | #short | #narrow]=?,
-  ~_type: @string [#disjunction | #conjunction | #unit]=?,
+  ~style: [#long | #short | #narrow]=?,
+  ~_type: [#disjunction | #conjunction | #unit]=?,
   unit,
 ) => listFormatOptions = ""
 
@@ -74,10 +71,9 @@ type displayNameFormatOptions
 
 @obj
 external displayNameFormatOptions: (
-  ~style: @string [#long | #short | #narrow]=?,
-  ~_type: @string [#language | #region | #script | #currency]=?,
-  ~fallback: @string [#code | #none]=?,
-  unit,
+  ~style: [#long | #short | #narrow]=?,
+  ~_type: [#language | #region | #script | #currency]=?,
+  ~fallback: [#code | #none]=?,
 ) => displayNameFormatOptions = ""
 
 type message = {
@@ -123,7 +119,6 @@ module Intl = {
   external formatRelativeTimeWithUnit: (
     t,
     float,
-    @string
     [
       | #second
       | #minute
@@ -139,7 +134,6 @@ module Intl = {
   external formatRelativeTimeWithUnitAndOptions: (
     t,
     float,
-    @string
     [
       | #second
       | #minute
@@ -370,8 +364,8 @@ module FormattedRelativeTime = {
       | #quarter
       | #year
     ]=?,
-    ~numeric: @string [#always | #auto]=?,
-    ~style: @string [#long | #short | #narrow]=?,
+    ~numeric: [#always | #auto]=?,
+    ~style: [#long | #short | #narrow]=?,
     ~format: string=?,
     ~updateIntervalInSeconds: float=?,
     ~children: (~formattedDate: string) => React.element=?,
@@ -420,7 +414,7 @@ module FormattedPlural = {
   @react.component @module("react-intl")
   external make: (
     ~value: int,
-    ~style: @string [#cardinal | #ordinal]=?,
+    ~style: [#cardinal | #ordinal]=?,
     ~other: React.element,
     ~zero: React.element=?,
     ~one: React.element=?,
@@ -435,8 +429,8 @@ module FormattedList = {
   @react.component @module("react-intl")
   external make: (
     ~value: array<string>,
-    ~style: @string [#long | #short | #narrow]=?,
-    ~_type: @string [#disjunction | #conjunction | #unit]=?,
+    ~style: [#long | #short | #narrow]=?,
+    ~_type: [#disjunction | #conjunction | #unit]=?,
     ~children: (~formattedList: string) => React.element=?,
   ) => React.element = "FormattedList"
 }
@@ -445,8 +439,8 @@ module FormattedDisplayName = {
   @react.component @module("react-intl")
   external make: (
     ~value: string,
-    ~style: @string [#long | #short | #narrow]=?,
-    ~_type: @string [#language | #region | #script | #currency]=?,
-    ~fallback: @string [#code | #none]=?,
+    ~style: [#long | #short | #narrow]=?,
+    ~_type: [#language | #region | #script | #currency]=?,
+    ~fallback: [#code | #none]=?,
   ) => React.element = "FormattedDisplayName"
 }
