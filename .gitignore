@@ -5,3 +5,4 @@ dist/
 .merlin
 .bsb.lock
 *.bs.js
+yarn-error.log
