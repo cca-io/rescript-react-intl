@@ -17,18 +17,18 @@
     "preversion": "yarn run clean"
   },
   "peerDependencies": {
+    "@rescript/react": ">=0.10.0",
     "react-intl": ">=4.0.0",
-    "reason-react": ">=0.7.0",
     "rescript": ">=9.1.0"
   },
   "devDependencies": {
+    "@rescript/react": "^0.10.3",
     "bs-react-intl-extractor-bin": "0.9.0",
     "bsb-js": "^1.1.7",
     "parcel-bundler": "1.12.4",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-intl": "4.5.3",
-    "reason-react": "0.9.1",
     "rescript": "^9.1.2"
   },
   "repository": {
