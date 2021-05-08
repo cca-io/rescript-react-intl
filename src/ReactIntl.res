@@ -1,26 +1,50 @@
 type dateTimeFormatOptions
 
+type localeMatcher = [#"best fit" | #lookup]
+type formatMatcher = [#"best fit" | #basic]
+
+type weekday = [#narrow | #short | #long]
+type era = [#narrow | #short | #long]
+type year = [#numeric | #"2-digit"]
+type month = [#numeric | #"2-digit" | #narrow | #short | #long]
+type day = [#numeric | #"2-digit"]
+type hour = [#numeric | #"2-digit"]
+type minute = [#numeric | #"2-digit"]
+type second = [#numeric | #"2-digit"]
+type timeZoneName = [#short | #long]
+
+type timeStyle = [#long | #short | #narrow]
+type timeUnit = [#second | #minute | #hour | #day | #week | #month | #quarter | #year]
+
+type relativeTimeNumeric = [#always | #auto]
+
+type numberStyle = [#decimal | #currency | #percent]
+type currencyDisplay = [#symbol | #code | #name]
+
+type listStyle = [#long | #short | #narrow]
+type listType = [#disjunction | #conjunction | #unit]
+
+type pluralStyle = [#cardinal | #ordinal]
+
+type displayNameStyle = [#long | #short | #narrow]
+type displayNameType = [#language | #region | #script | #currency]
+type displayNameFallback = [#code | #none]
+
 @obj
 external dateTimeFormatOptions: (
-  ~localeMatcher: [#"best fit" | #lookup]=?,
-  ~formatMatcher: [#"best fit" | #basic]=?,
+  ~localeMatcher: localeMatcher=?,
+  ~formatMatcher: formatMatcher=?,
   ~timeZone: string=?,
   ~hour12: bool=?,
-  ~weekday: [#narrow | #short | #long]=?,
-  ~era: [#narrow | #short | #long]=?,
-  ~year: [#numeric | #"2-digit"]=?,
-  ~month: [
-    | #numeric
-    | #"2-digit"
-    | #narrow
-    | #short
-    | #long
-  ]=?,
-  ~day: [#numeric | #"2-digit"]=?,
-  ~hour: [#numeric | #"2-digit"]=?,
-  ~minute: [#numeric | #"2-digit"]=?,
-  ~second: [#numeric | #"2-digit"]=?,
-  ~timeZoneName: [#short | #long]=?,
+  ~weekday: weekday=?,
+  ~era: era=?,
+  ~year: year=?,
+  ~month: month=?,
+  ~day: day=?,
+  ~hour: hour=?,
+  ~minute: minute=?,
+  ~second: second=?,
+  ~timeZoneName: timeZoneName=?,
   ~format: string=?,
   unit,
 ) => dateTimeFormatOptions = ""
@@ -29,8 +53,8 @@ type relativeTimeFormatOptions
 
 @obj
 external relativeTimeFormatOptions: (
-  ~numeric: [#always | #auto]=?,
-  ~style: [#long | #short | #narrow]=?,
+  ~numeric: relativeTimeNumeric=?,
+  ~style: timeStyle=?,
   ~format: string=?,
   unit,
 ) => relativeTimeFormatOptions = ""
@@ -39,10 +63,10 @@ type numberFormatOptions
 
 @obj
 external numberFormatOptions: (
-  ~localeMatcher: [#"best fit" | #lookup]=?,
-  ~style: [#decimal | #currency | #percent]=?,
+  ~localeMatcher: localeMatcher=?,
+  ~style: numberStyle=?,
   ~currency: string=?,
-  ~currencyDisplay: [#symbol | #code | #name]=?,
+  ~currencyDisplay: currencyDisplay=?,
   ~useGrouping: bool=?,
   ~minimumIntegerDigits: int=?,
   ~minimumFractionDigits: int=?,
@@ -55,24 +79,21 @@ external numberFormatOptions: (
 type pluralFormatOptions
 
 @obj
-external pluralFormatOptions: (~style: [#cardinal | #ordinal]=?, unit) => pluralFormatOptions = ""
+external pluralFormatOptions: (~style: pluralStyle=?, unit) => pluralFormatOptions = ""
 
 type listFormatOptions
 
 @obj
-external listFormatOptions: (
-  ~style: [#long | #short | #narrow]=?,
-  ~_type: [#disjunction | #conjunction | #unit]=?,
-  unit,
-) => listFormatOptions = ""
+external listFormatOptions: (~style: listStyle=?, ~_type: listType=?, unit) => listFormatOptions =
+  ""
 
 type displayNameFormatOptions
 
 @obj
 external displayNameFormatOptions: (
-  ~style: [#long | #short | #narrow]=?,
-  ~_type: [#language | #region | #script | #currency]=?,
-  ~fallback: [#code | #none]=?,
+  ~style: displayNameStyle=?,
+  ~_type: displayNameType=?,
+  ~fallback: displayNameFallback=?,
 ) => displayNameFormatOptions = ""
 
 type message = {
@@ -115,34 +136,12 @@ module Intl = {
   @send
   external formatRelativeTime: (t, float) => string = "formatRelativeTime"
   @send
-  external formatRelativeTimeWithUnit: (
-    t,
-    float,
-    [
-      | #second
-      | #minute
-      | #hour
-      | #day
-      | #week
-      | #month
-      | #quarter
-      | #year
-    ],
-  ) => string = "formatRelativeTime"
+  external formatRelativeTimeWithUnit: (t, float, timeUnit) => string = "formatRelativeTime"
   @send
   external formatRelativeTimeWithUnitAndOptions: (
     t,
     float,
-    [
-      | #second
-      | #minute
-      | #hour
-      | #day
-      | #week
-      | #month
-      | #quarter
-      | #year
-    ],
+    timeUnit,
     relativeTimeFormatOptions,
   ) => string = "formatRelativeTime"
   @send external formatNumber: (t, float) => string = "formatNumber"
@@ -237,25 +236,19 @@ module FormattedDate = {
   @react.component @module("react-intl")
   external make: (
     ~value: Js.Date.t,
-    ~localeMatcher: [#"best fit" | #lookup]=?,
-    ~formatMatcher: [#"best fit" | #basic]=?,
+    ~localeMatcher: localeMatcher=?,
+    ~formatMatcher: formatMatcher=?,
     ~timeZone: string=?,
     ~hour12: bool=?,
-    ~weekday: [#narrow | #short | #long]=?,
-    ~era: [#narrow | #short | #long]=?,
-    ~year: [#numeric | #"2-digit"]=?,
-    ~month: [
-      | #numeric
-      | #"2-digit"
-      | #narrow
-      | #short
-      | #long
-    ]=?,
-    ~day: [#numeric | #"2-digit"]=?,
-    ~hour: [#numeric | #"2-digit"]=?,
-    ~minute: [#numeric | #"2-digit"]=?,
-    ~second: [#numeric | #"2-digit"]=?,
-    ~timeZoneName: [#short | #long]=?,
+    ~weekday: weekday=?,
+    ~era: era=?,
+    ~year: year=?,
+    ~month: month=?,
+    ~day: day=?,
+    ~hour: hour=?,
+    ~minute: minute=?,
+    ~second: second=?,
+    ~timeZoneName: timeZoneName=?,
     ~format: string=?,
     ~children: (~formattedDate: string) => React.element=?,
   ) => React.element = "FormattedDate"
@@ -265,25 +258,19 @@ module FormattedDateParts = {
   @react.component @module("react-intl")
   external make: (
     ~value: Js.Date.t,
-    ~localeMatcher: [#"best fit" | #lookup]=?,
-    ~formatMatcher: [#"best fit" | #basic]=?,
+    ~localeMatcher: localeMatcher=?,
+    ~formatMatcher: formatMatcher=?,
     ~timeZone: string=?,
     ~hour12: bool=?,
-    ~weekday: [#narrow | #short | #long]=?,
-    ~era: [#narrow | #short | #long]=?,
-    ~year: [#numeric | #"2-digit"]=?,
-    ~month: [
-      | #numeric
-      | #"2-digit"
-      | #narrow
-      | #short
-      | #long
-    ]=?,
-    ~day: [#numeric | #"2-digit"]=?,
-    ~hour: [#numeric | #"2-digit"]=?,
-    ~minute: [#numeric | #"2-digit"]=?,
-    ~second: [#numeric | #"2-digit"]=?,
-    ~timeZoneName: [#short | #long]=?,
+    ~weekday: weekday=?,
+    ~era: era=?,
+    ~year: year=?,
+    ~month: month=?,
+    ~day: day=?,
+    ~hour: hour=?,
+    ~minute: minute=?,
+    ~second: second=?,
+    ~timeZoneName: timeZoneName=?,
     ~format: string=?,
     ~children: (~formattedDateParts: array<part>) => React.element,
   ) => React.element = "FormattedDateParts"
@@ -293,25 +280,19 @@ module FormattedTime = {
   @react.component @module("react-intl")
   external make: (
     ~value: Js.Date.t,
-    ~localeMatcher: [#"best fit" | #lookup]=?,
-    ~formatMatcher: [#"best fit" | #basic]=?,
+    ~localeMatcher: localeMatcher=?,
+    ~formatMatcher: formatMatcher=?,
     ~timeZone: string=?,
     ~hour12: bool=?,
-    ~weekday: [#narrow | #short | #long]=?,
-    ~era: [#narrow | #short | #long]=?,
-    ~year: [#numeric | #"2-digit"]=?,
-    ~month: [
-      | #numeric
-      | #"2-digit"
-      | #narrow
-      | #short
-      | #long
-    ]=?,
-    ~day: [#numeric | #"2-digit"]=?,
-    ~hour: [#numeric | #"2-digit"]=?,
-    ~minute: [#numeric | #"2-digit"]=?,
-    ~second: [#numeric | #"2-digit"]=?,
-    ~timeZoneName: [#short | #long]=?,
+    ~weekday: weekday=?,
+    ~era: era=?,
+    ~year: year=?,
+    ~month: month=?,
+    ~day: day=?,
+    ~hour: hour=?,
+    ~minute: minute=?,
+    ~second: second=?,
+    ~timeZoneName: timeZoneName=?,
     ~format: string=?,
     ~children: (~formattedTime: string) => React.element=?,
   ) => React.element = "FormattedTime"
@@ -321,25 +302,19 @@ module FormattedTimeParts = {
   @react.component @module("react-intl")
   external make: (
     ~value: Js.Date.t,
-    ~localeMatcher: [#"best fit" | #lookup]=?,
-    ~formatMatcher: [#"best fit" | #basic]=?,
+    ~localeMatcher: localeMatcher=?,
+    ~formatMatcher: formatMatcher=?,
     ~timeZone: string=?,
     ~hour12: bool=?,
-    ~weekday: [#narrow | #short | #long]=?,
-    ~era: [#narrow | #short | #long]=?,
-    ~year: [#numeric | #"2-digit"]=?,
-    ~month: [
-      | #numeric
-      | #"2-digit"
-      | #narrow
-      | #short
-      | #long
-    ]=?,
-    ~day: [#numeric | #"2-digit"]=?,
-    ~hour: [#numeric | #"2-digit"]=?,
-    ~minute: [#numeric | #"2-digit"]=?,
-    ~second: [#numeric | #"2-digit"]=?,
-    ~timeZoneName: [#short | #long]=?,
+    ~weekday: weekday=?,
+    ~era: era=?,
+    ~year: year=?,
+    ~month: month=?,
+    ~day: day=?,
+    ~hour: hour=?,
+    ~minute: minute=?,
+    ~second: second=?,
+    ~timeZoneName: timeZoneName=?,
     ~format: string=?,
     ~children: (~formattedTimeParts: array<part>) => React.element,
   ) => React.element = "FormattedTimeParts"
@@ -349,18 +324,9 @@ module FormattedRelativeTime = {
   @react.component @module("react-intl")
   external make: (
     ~value: float,
-    ~unit: [
-      | #second
-      | #minute
-      | #hour
-      | #day
-      | #week
-      | #month
-      | #quarter
-      | #year
-    ]=?,
-    ~numeric: [#always | #auto]=?,
-    ~style: [#long | #short | #narrow]=?,
+    ~unit: timeUnit=?,
+    ~numeric: relativeTimeNumeric=?,
+    ~style: timeStyle=?,
     ~format: string=?,
     ~updateIntervalInSeconds: float=?,
     ~children: (~formattedDate: string) => React.element=?,
@@ -371,10 +337,10 @@ module FormattedNumber = {
   @react.component @module("react-intl")
   external make: (
     ~value: float,
-    ~localeMatcher: [#"best fit" | #lookup]=?,
-    ~style: [#decimal | #currency | #percent]=?,
+    ~localeMatcher: localeMatcher=?,
+    ~style: numberStyle=?,
     ~currency: string=?,
-    ~currencyDisplay: [#symbol | #code | #name]=?,
+    ~currencyDisplay: currencyDisplay=?,
     ~useGrouping: bool=?,
     ~minimumIntegerDigits: int=?,
     ~minimumFractionDigits: int=?,
@@ -390,10 +356,10 @@ module FormattedNumberParts = {
   @react.component @module("react-intl")
   external make: (
     ~value: float,
-    ~localeMatcher: [#"best fit" | #lookup]=?,
-    ~style: [#decimal | #currency | #percent]=?,
+    ~localeMatcher: localeMatcher=?,
+    ~style: numberStyle=?,
     ~currency: string=?,
-    ~currencyDisplay: [#symbol | #code | #name]=?,
+    ~currencyDisplay: currencyDisplay=?,
     ~useGrouping: bool=?,
     ~minimumIntegerDigits: int=?,
     ~minimumFractionDigits: int=?,
@@ -409,7 +375,7 @@ module FormattedPlural = {
   @react.component @module("react-intl")
   external make: (
     ~value: int,
-    ~style: [#cardinal | #ordinal]=?,
+    ~style: pluralStyle=?,
     ~other: React.element,
     ~zero: React.element=?,
     ~one: React.element=?,
@@ -424,8 +390,8 @@ module FormattedList = {
   @react.component @module("react-intl")
   external make: (
     ~value: array<string>,
-    ~style: [#long | #short | #narrow]=?,
-    ~_type: [#disjunction | #conjunction | #unit]=?,
+    ~style: listStyle=?,
+    ~_type: listType=?,
     ~children: (~formattedList: string) => React.element=?,
   ) => React.element = "FormattedList"
 }
@@ -434,8 +400,8 @@ module FormattedDisplayName = {
   @react.component @module("react-intl")
   external make: (
     ~value: string,
-    ~style: [#long | #short | #narrow]=?,
-    ~_type: [#language | #region | #script | #currency]=?,
-    ~fallback: [#code | #none]=?,
+    ~style: displayNameStyle=?,
+    ~_type: displayNameType=?,
+    ~fallback: displayNameFallback=?,
   ) => React.element = "FormattedDisplayName"
 }
