@@ -2,25 +2,24 @@ type dateTimeFormatOptions
 
 @obj
 external dateTimeFormatOptions: (
-  ~localeMatcher: @string [@as("best fit") #bestFit | #lookup]=?,
-  ~formatMatcher: @string [@as("best fit") #bestFit | #basic]=?,
+  ~localeMatcher: [#"best fit" | #lookup]=?,
+  ~formatMatcher: [#"best fit" | #basic]=?,
   ~timeZone: string=?,
   ~hour12: bool=?,
   ~weekday: [#narrow | #short | #long]=?,
   ~era: [#narrow | #short | #long]=?,
-  ~year: @string [#numeric | @as("2-digit") #twoDigit]=?,
-  ~month: @string
-  [
+  ~year: [#numeric | #"2-digit"]=?,
+  ~month: [
     | #numeric
-    | @as("2-digit") #twoDigit
+    | #"2-digit"
     | #narrow
     | #short
     | #long
   ]=?,
-  ~day: @string [#numeric | @as("2-digit") #twoDigit]=?,
-  ~hour: @string [#numeric | @as("2-digit") #twoDigit]=?,
-  ~minute: @string [#numeric | @as("2-digit") #twoDigit]=?,
-  ~second: @string [#numeric | @as("2-digit") #twoDigit]=?,
+  ~day: [#numeric | #"2-digit"]=?,
+  ~hour: [#numeric | #"2-digit"]=?,
+  ~minute: [#numeric | #"2-digit"]=?,
+  ~second: [#numeric | #"2-digit"]=?,
   ~timeZoneName: [#short | #long]=?,
   ~format: string=?,
   unit,
@@ -40,7 +39,7 @@ type numberFormatOptions
 
 @obj
 external numberFormatOptions: (
-  ~localeMatcher: @string [@as("best fit") #bestFit | #lookup]=?,
+  ~localeMatcher: [#"best fit" | #lookup]=?,
   ~style: [#decimal | #currency | #percent]=?,
   ~currency: string=?,
   ~currencyDisplay: [#symbol | #code | #name]=?,
@@ -238,25 +237,24 @@ module FormattedDate = {
   @react.component @module("react-intl")
   external make: (
     ~value: Js.Date.t,
-    ~localeMatcher: @string [@as("best fit") #bestFit | #lookup]=?,
-    ~formatMatcher: @string [@as("best fit") #bestFit | #basic]=?,
+    ~localeMatcher: [#"best fit" | #lookup]=?,
+    ~formatMatcher: [#"best fit" | #basic]=?,
     ~timeZone: string=?,
     ~hour12: bool=?,
     ~weekday: [#narrow | #short | #long]=?,
     ~era: [#narrow | #short | #long]=?,
-    ~year: @string [#numeric | @as("2-digit") #twoDigit]=?,
-    ~month: @string
-    [
+    ~year: [#numeric | #"2-digit"]=?,
+    ~month: [
       | #numeric
-      | @as("2-digit") #twoDigit
+      | #"2-digit"
       | #narrow
       | #short
       | #long
     ]=?,
-    ~day: @string [#numeric | @as("2-digit") #twoDigit]=?,
-    ~hour: @string [#numeric | @as("2-digit") #twoDigit]=?,
-    ~minute: @string [#numeric | @as("2-digit") #twoDigit]=?,
-    ~second: @string [#numeric | @as("2-digit") #twoDigit]=?,
+    ~day: [#numeric | #"2-digit"]=?,
+    ~hour: [#numeric | #"2-digit"]=?,
+    ~minute: [#numeric | #"2-digit"]=?,
+    ~second: [#numeric | #"2-digit"]=?,
     ~timeZoneName: [#short | #long]=?,
     ~format: string=?,
     ~children: (~formattedDate: string) => React.element=?,
@@ -267,25 +265,24 @@ module FormattedDateParts = {
   @react.component @module("react-intl")
   external make: (
     ~value: Js.Date.t,
-    ~localeMatcher: @string [@as("best fit") #bestFit | #lookup]=?,
-    ~formatMatcher: @string [@as("best fit") #bestFit | #basic]=?,
+    ~localeMatcher: [#"best fit" | #lookup]=?,
+    ~formatMatcher: [#"best fit" | #basic]=?,
     ~timeZone: string=?,
     ~hour12: bool=?,
     ~weekday: [#narrow | #short | #long]=?,
     ~era: [#narrow | #short | #long]=?,
-    ~year: @string [#numeric | @as("2-digit") #twoDigit]=?,
-    ~month: @string
-    [
+    ~year: [#numeric | #"2-digit"]=?,
+    ~month: [
       | #numeric
-      | @as("2-digit") #twoDigit
+      | #"2-digit"
       | #narrow
       | #short
       | #long
     ]=?,
-    ~day: @string [#numeric | @as("2-digit") #twoDigit]=?,
-    ~hour: @string [#numeric | @as("2-digit") #twoDigit]=?,
-    ~minute: @string [#numeric | @as("2-digit") #twoDigit]=?,
-    ~second: @string [#numeric | @as("2-digit") #twoDigit]=?,
+    ~day: [#numeric | #"2-digit"]=?,
+    ~hour: [#numeric | #"2-digit"]=?,
+    ~minute: [#numeric | #"2-digit"]=?,
+    ~second: [#numeric | #"2-digit"]=?,
     ~timeZoneName: [#short | #long]=?,
     ~format: string=?,
     ~children: (~formattedDateParts: array<part>) => React.element,
@@ -296,25 +293,24 @@ module FormattedTime = {
   @react.component @module("react-intl")
   external make: (
     ~value: Js.Date.t,
-    ~localeMatcher: @string [@as("best fit") #bestFit | #lookup]=?,
-    ~formatMatcher: @string [@as("best fit") #bestFit | #basic]=?,
+    ~localeMatcher: [#"best fit" | #lookup]=?,
+    ~formatMatcher: [#"best fit" | #basic]=?,
     ~timeZone: string=?,
     ~hour12: bool=?,
     ~weekday: [#narrow | #short | #long]=?,
     ~era: [#narrow | #short | #long]=?,
-    ~year: @string [#numeric | @as("2-digit") #twoDigit]=?,
-    ~month: @string
-    [
+    ~year: [#numeric | #"2-digit"]=?,
+    ~month: [
       | #numeric
-      | @as("2-digit") #twoDigit
+      | #"2-digit"
       | #narrow
       | #short
       | #long
     ]=?,
-    ~day: @string [#numeric | @as("2-digit") #twoDigit]=?,
-    ~hour: @string [#numeric | @as("2-digit") #twoDigit]=?,
-    ~minute: @string [#numeric | @as("2-digit") #twoDigit]=?,
-    ~second: @string [#numeric | @as("2-digit") #twoDigit]=?,
+    ~day: [#numeric | #"2-digit"]=?,
+    ~hour: [#numeric | #"2-digit"]=?,
+    ~minute: [#numeric | #"2-digit"]=?,
+    ~second: [#numeric | #"2-digit"]=?,
     ~timeZoneName: [#short | #long]=?,
     ~format: string=?,
     ~children: (~formattedTime: string) => React.element=?,
@@ -325,25 +321,24 @@ module FormattedTimeParts = {
   @react.component @module("react-intl")
   external make: (
     ~value: Js.Date.t,
-    ~localeMatcher: @string [@as("best fit") #bestFit | #lookup]=?,
-    ~formatMatcher: @string [@as("best fit") #bestFit | #basic]=?,
+    ~localeMatcher: [#"best fit" | #lookup]=?,
+    ~formatMatcher: [#"best fit" | #basic]=?,
     ~timeZone: string=?,
     ~hour12: bool=?,
     ~weekday: [#narrow | #short | #long]=?,
     ~era: [#narrow | #short | #long]=?,
-    ~year: @string [#numeric | @as("2-digit") #twoDigit]=?,
-    ~month: @string
-    [
+    ~year: [#numeric | #"2-digit"]=?,
+    ~month: [
       | #numeric
-      | @as("2-digit") #twoDigit
+      | #"2-digit"
       | #narrow
       | #short
       | #long
     ]=?,
-    ~day: @string [#numeric | @as("2-digit") #twoDigit]=?,
-    ~hour: @string [#numeric | @as("2-digit") #twoDigit]=?,
-    ~minute: @string [#numeric | @as("2-digit") #twoDigit]=?,
-    ~second: @string [#numeric | @as("2-digit") #twoDigit]=?,
+    ~day: [#numeric | #"2-digit"]=?,
+    ~hour: [#numeric | #"2-digit"]=?,
+    ~minute: [#numeric | #"2-digit"]=?,
+    ~second: [#numeric | #"2-digit"]=?,
     ~timeZoneName: [#short | #long]=?,
     ~format: string=?,
     ~children: (~formattedTimeParts: array<part>) => React.element,
@@ -376,7 +371,7 @@ module FormattedNumber = {
   @react.component @module("react-intl")
   external make: (
     ~value: float,
-    ~localeMatcher: @string [@as("best fit") #bestFit | #lookup]=?,
+    ~localeMatcher: [#"best fit" | #lookup]=?,
     ~style: [#decimal | #currency | #percent]=?,
     ~currency: string=?,
     ~currencyDisplay: [#symbol | #code | #name]=?,
@@ -395,7 +390,7 @@ module FormattedNumberParts = {
   @react.component @module("react-intl")
   external make: (
     ~value: float,
-    ~localeMatcher: @string [@as("best fit") #bestFit | #lookup]=?,
+    ~localeMatcher: [#"best fit" | #lookup]=?,
     ~style: [#decimal | #currency | #percent]=?,
     ~currency: string=?,
     ~currencyDisplay: [#symbol | #code | #name]=?,
