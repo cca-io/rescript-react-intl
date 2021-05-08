@@ -1259,10 +1259,10 @@ browserslist@^4.6.0, browserslist@^4.7.2:
     electron-to-chromium "^1.3.295"
     node-releases "^1.1.38"
 
-bs-react-intl-extractor-bin@0.9.0:
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/bs-react-intl-extractor-bin/-/bs-react-intl-extractor-bin-0.9.0.tgz#5f3466df9149b45a532431ce6dea4850d2ae1e5d"
-  integrity sha512-L7knHapyG8LrUar9IB6eMJYxqjZCPV1FD+Uk8aW1wWlifmWKk2QfQhEV97LPtQFAitxzISX6oM+8DSf3B34Yqg==
+bs-react-intl-extractor-bin@0.10.0:
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/bs-react-intl-extractor-bin/-/bs-react-intl-extractor-bin-0.10.0.tgz#8e27bfbfc7c9c487d6e041d0b720966caa23b476"
+  integrity sha512-nsVSIOUHNBnD/u7euGYTVRwdJbrzuKbwd5hyzwf06XoJ2udgUsA4CappwQR3rEOlsIs/1QurfpIfrBIPmQt37g==
 
 bsb-js@^1.1.7:
   version "1.1.7"
