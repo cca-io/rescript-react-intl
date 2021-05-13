@@ -4,18 +4,17 @@
     "src",
     {
       "dir": "examples",
-      "type" : "dev",
-      "subdirs": true,
-    },
+      "type": "dev",
+      "subdirs": true
+    }
   ],
-  "bs-dependencies": ["reason-react"],
+  "bs-dependencies": ["@rescript/react"],
   "reason": {
-    "react-jsx": 3,
+    "react-jsx": 3
   },
-  "refmt": 3,
   "package-specs": {
     "module": "es6",
-    "in-source": true,
+    "in-source": true
   },
-  "suffix": ".bs.js",
+  "suffix": ".bs.js"
 }
