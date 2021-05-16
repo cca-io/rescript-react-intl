@@ -1,21 +1,25 @@
-# bs-react-intl
+# rescript-react-intl
 
 [![NPM](https://nodei.co/npm/bs-react-intl.png?compact=true)](https://nodei.co/npm/bs-react-intl/)
 
-[BuckleScript](https://bucklescript.github.io) bindings to [react-intl].
+[ReScript] bindings to [react-intl].
 
-To extract messages from [Reason](https://reasonml.github.io) source files for localization, use [bs-react-intl-extractor](https://github.com/cknitt/bs-react-intl-extractor).
+To extract messages from [ReScript] source files for localization, use [rescript-react-intl-extractor].
 
 ## Installation
+
 ```shell
 # yarn
-yarn add bs-react-intl
+yarn add rescript-react-intl
 
 # or npm
-npm install --save bs-react-intl
+npm install --save rescript-react-intl
 ```
 
+Note: If you need version of the bindings that still supports the old Reason syntax, use the old package name `bs-react-intl` instead.
+
 ## Examples
+
 Clone this repo.
 
 ```shell
@@ -24,9 +28,13 @@ yarn start
 ```
 
 ## Status
-bs-react-intl should cover all of the [react-intl] 3.0.0 API. If you find anything missing, please file an issue.
+
+rescript-react-intl should cover all of the [react-intl] 3.0.0 API. If you find anything missing, please file an issue.
 
 ## Usage
+
 See [`examples`](./examples) folder.
 
+[rescript]: https://rescript-lang.org
 [react-intl]: https://github.com/formatjs/react-intl
+[rescript-react-intl-extractor]: https://github.com/cca-io/rescript-react-intl-extractor
