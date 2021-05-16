@@ -1,8 +1,11 @@
 {
-  "name": "bs-react-intl",
-  "version": "2.0.0",
-  "description": "BuckleScript bindings to react-intl",
-  "author": "Alex Fedoseev <alex.fedoseev@gmail.com>",
+  "name": "rescript-react-intl",
+  "version": "3.0.0",
+  "description": "ReScript bindings to react-intl",
+  "author": "Christoph Knittel <ck@cca.io>",
+  "contributors": [
+    "Alex Fedoseev <alex.fedoseev@gmail.com>"
+  ],
   "license": "MIT",
   "main": "src/ReactIntl.bs.js",
   "scripts": {
@@ -33,7 +36,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/reasonml-community/bs-react-intl"
+    "url": "https://github.com/cca-io/rescript-react-intl"
   },
   "files": [
     "src",
@@ -42,9 +45,6 @@
   "keywords": [
     "react",
     "react-intl",
-    "reason",
-    "reasonml",
-    "ocaml",
-    "bucklescript"
+    "rescript"
   ]
 }

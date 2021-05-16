@@ -1,3 +1,10 @@
+# 3.0.0
+
+- **[ BREAKING ]** Package renamed to `rescript-react-intl`.
+- **[ BREAKING ]** ReScript support
+  - Now requires ReScript >= 9.1.0 and @rescript/react
+  - The names of "enum" values now exactly match the names in JavaScript, e.g. `#"2-digit"` instead of `#twoDigit`.
+
 # 2.0.0
 * **[ BREAKING ]** `bs-platform >=7.2.2`.
 * **[ BREAKING ]** `react-intl >=4.0.0`:
