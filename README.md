@@ -1,6 +1,6 @@
 # rescript-react-intl
 
-[![NPM](https://nodei.co/npm/bs-react-intl.png?compact=true)](https://nodei.co/npm/bs-react-intl/)
+[![NPM](https://nodei.co/npm/rescript-react-intl.png?compact=true)](https://nodei.co/npm/rescript-react-intl/)
 
 [ReScript] bindings to [react-intl].
 
