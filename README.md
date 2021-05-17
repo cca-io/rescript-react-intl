@@ -1,6 +1,7 @@
 # rescript-react-intl
 
-[![NPM](https://nodei.co/npm/rescript-react-intl.png?compact=true)](https://nodei.co/npm/rescript-react-intl/)
+[![NPM](https://nodei.co/npm/rescript-react-intl.png?compact=true)](https://nodei.co/npm/rescript-react-intl/)  
+![Build Status](https://github.com/cca-io/rescript-react-intl/workflows/CI/badge.svg)
 
 [ReScript] bindings to [react-intl].
 
