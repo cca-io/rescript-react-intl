@@ -17,7 +17,7 @@ yarn add rescript-react-intl
 npm install --save rescript-react-intl
 ```
 
-Note: If you need version of the bindings that still supports the old Reason syntax, use the old package name `bs-react-intl` instead.
+Note: If you need a version of the bindings that still supports the old Reason syntax, use the old package name `bs-react-intl` instead.
 
 ## Examples
 
