@@ -19,7 +19,10 @@ type timeUnit = [#second | #minute | #hour | #day | #week | #month | #quarter | 
 type relativeTimeNumeric = [#always | #auto]
 
 type numberStyle = [#decimal | #currency | #percent]
+type compactDisplay = [#long | #short]
 type currencyDisplay = [#symbol | #code | #name]
+type notation = [#standard | #scientific | #engineering | #compact]
+type signDisplay = [#auto | #always | #negative | #never | #exceptZero]
 
 type listStyle = [#long | #short | #narrow]
 type listType = [#disjunction | #conjunction | #unit]
@@ -65,8 +68,12 @@ type numberFormatOptions
 external numberFormatOptions: (
   ~localeMatcher: localeMatcher=?,
   ~style: numberStyle=?,
+  ~compactDisplay: compactDisplay=?,
   ~currency: string=?,
   ~currencyDisplay: currencyDisplay=?,
+  ~notation: notation=?,
+  ~currencySign: string=?,
+  ~signDisplay: signDisplay=?,
   ~useGrouping: bool=?,
   ~minimumIntegerDigits: int=?,
   ~minimumFractionDigits: int=?,
@@ -339,8 +346,12 @@ module FormattedNumber = {
     ~value: float,
     ~localeMatcher: localeMatcher=?,
     ~style: numberStyle=?,
+    ~compactDisplay: compactDisplay=?,
     ~currency: string=?,
     ~currencyDisplay: currencyDisplay=?,
+    ~notation: notation=?,
+    ~currencySign: string=?,
+    ~signDisplay: signDisplay=?,
     ~useGrouping: bool=?,
     ~minimumIntegerDigits: int=?,
     ~minimumFractionDigits: int=?,
